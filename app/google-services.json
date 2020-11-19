@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "718272768939",
+    "firebase_url": "https://podzielsieksiazka-b0525.firebaseio.com",
+    "project_id": "podzielsieksiazka-b0525",
+    "storage_bucket": "podzielsieksiazka-b0525.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718272768939:android:b9bd63d5152ca364b200ee",
+        "android_client_info": {
+          "package_name": "com.io2020.PodzielSieKsiazka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718272768939-0u7qireirfq4v35po9hvqbdtga948ou5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.io2020.PodzielSieKsiazka",
+            "certificate_hash": "8c5024d2f163e015db88e1ce65847331b601c171"
+          }
+        },
+        {
+          "client_id": "718272768939-252tifn66clicq35p6n177mjaisfqe11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5YUdaLBIRhV4cBvprnF2Sg4R13K-3Qk4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718272768939-252tifn66clicq35p6n177mjaisfqe11.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
