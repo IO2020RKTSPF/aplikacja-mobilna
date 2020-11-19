@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import com.io2020.PodzielSieKsiazka.schemas.AppUser;
+
 public class GoogleLogInActivity extends AppCompatActivity {
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
@@ -79,6 +81,10 @@ public class GoogleLogInActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Log.d(TAG, "signInWithCredential:success: currentUser: " + user.getDisplayName());
                             Toast.makeText(GoogleLogInActivity.this, "Firebase Authentication Succeeded ",  Toast.LENGTH_LONG).show();
+                            Intent resultIntent = new Intent();
+                            resultIntent.putExtra("AppUser", new AppUser(0, user.getPhotoUrl().toString(), user.getDisplayName(), user.getEmail()));
+                            setResult(200, resultIntent);
+                            finish();
                         } else {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(GoogleLogInActivity.this, "Firebase Authentication failed:" + task.getException(),  Toast.LENGTH_LONG).show();
