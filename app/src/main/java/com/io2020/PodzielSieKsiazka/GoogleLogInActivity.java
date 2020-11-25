@@ -1,7 +1,9 @@
 package com.io2020.PodzielSieKsiazka;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.service.controls.Control;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -32,26 +34,14 @@ public class GoogleLogInActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
+        setContentView(R.layout.activity_google_log_in);
+        findViewById(R.id.loginbuttonscenter)
+                .findViewById(R.id.loginbuttonsframe)
+                .findViewById(R.id.button)
+                .setOnClickListener(l -> {
+                    signIn();
+                });
 
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        mAuth = FirebaseAuth.getInstance();
-        signInToGoogle();
-
-    }
-
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        if (currentUser != null) {
-            Log.d(TAG, "Currently Signed in: " + currentUser.getEmail());
-            Toast.makeText(this, "Currently Logged in: " + currentUser.getEmail(), Toast.LENGTH_LONG).show();
-        }
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -81,9 +71,9 @@ public class GoogleLogInActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Log.d(TAG, "signInWithCredential:success: currentUser: " + user.getDisplayName());
                             Toast.makeText(GoogleLogInActivity.this, "Firebase Authentication Succeeded ",  Toast.LENGTH_LONG).show();
-                            Intent resultIntent = new Intent();
-                            resultIntent.putExtra("AppUser", new AppUser(0, user.getPhotoUrl().toString(), user.getDisplayName(), user.getEmail()));
-                            setResult(200, resultIntent);
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.putExtra("AppUser", new AppUser(0, user.getPhotoUrl().toString(), user.getDisplayName(), user.getEmail()));
+                            startActivity(intent);
                             finish();
                         } else {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -98,5 +88,14 @@ public class GoogleLogInActivity extends AppCompatActivity {
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
+    public void signIn(){
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
 
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        mAuth = FirebaseAuth.getInstance();
+        signInToGoogle();
+    }
 }

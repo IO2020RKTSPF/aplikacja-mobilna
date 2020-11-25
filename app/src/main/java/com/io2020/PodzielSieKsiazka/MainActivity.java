@@ -2,10 +2,14 @@ package com.io2020.PodzielSieKsiazka;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -16,6 +20,8 @@ import com.io2020.PodzielSieKsiazka.schemas.Book;
 
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -54,9 +60,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createApi();
-        Intent intent = new Intent(this, GoogleLogInActivity.class);
-        startActivityForResult(intent, 0);
-      
+        AppUser appUser = (AppUser) getIntent().getSerializableExtra("AppUser");
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -74,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         nicknameField = navigationHeader.findViewById(R.id.nameView);
         emailField = navigationHeader.findViewById(R.id.emailView);
         imageView = navigationHeader.findViewById(R.id.imageView);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -83,22 +89,29 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        nicknameField.setText(appUser.getName());
+        emailField.setText(appUser.getEmail());
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+        Toast.makeText(this, width + " " + height, Toast.LENGTH_SHORT).show();
+        Picasso.with(this)
+                .load(appUser.getImgUrl())
+                .resize(width / 5,width / 5)
+                .into(imageView);
+
+        TextView logout = findViewById(R.id.nav_bottom)
+                .findViewById(R.id.navbottom_linear)
+                .findViewById(R.id.logout);
+        logout.setOnClickListener(l -> {
+            signOut();
+        });
     }
 
-    @Override
-    public void onActivityResult (int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 0) {
-            AppUser appUser = (AppUser) data.getExtras().getSerializable("AppUser");
-            nicknameField.setText(appUser.getName());
-            emailField.setText(appUser.getEmail());
-            Picasso.with(this)
-                    .load(appUser.getImgUrl())
-                    .resize(imageView.getWidth(), imageView.getHeight())
-                    .into(imageView);
-        }
 
-    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -125,5 +138,18 @@ public class MainActivity extends AppCompatActivity {
                 .client(httpClient.build())
                 .build();
         retrofitAPI = retrofit.create(RetrofitAPI.class);
+    }
+
+    private void signOut(){
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        GoogleSignInClient client = GoogleSignIn.getClient(this, gso);
+        client.signOut();
+        Intent intent = new Intent(this, GoogleLogInActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
