@@ -24,6 +24,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import com.io2020.PodzielSieKsiazka.schemas.AppUser;
+import com.io2020.PodzielSieKsiazka.schemas.User;
+
+import retrofit2.Call;
 
 public class GoogleLogInActivity extends AppCompatActivity {
     private static final String TAG = "GoogleActivity";
@@ -98,4 +101,5 @@ public class GoogleLogInActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         signInToGoogle();
     }
+
 }
