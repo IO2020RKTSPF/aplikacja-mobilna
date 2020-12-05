@@ -10,9 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.io2020.PodzielSieKsiazka.MainActivity;
 import com.io2020.PodzielSieKsiazka.R;
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitAPI;
+import com.io2020.PodzielSieKsiazka.schemas.AppUser;
 import com.io2020.PodzielSieKsiazka.schemas.Book;
+import com.io2020.PodzielSieKsiazka.schemas.User;
 
 import java.util.List;
 
@@ -31,16 +34,16 @@ public class YourListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
     }
 
     private void fillBookList(){
-        Call<List<Book>> call = retrofitAPI.getAllBooksList();
-        call.enqueue(new Callback<List<Book>>() {
+        Call<User> call = retrofitAPI.getUserById(MainActivity.userID);
+        call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
-                bookList = response.body();
+            public void onResponse(Call<User> call, Response<User> response) {
+                bookList = response.body().getBookList();
                 notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure(Call<List<Book>> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
 
             }
         });

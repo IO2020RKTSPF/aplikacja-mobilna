@@ -1,5 +1,6 @@
 package com.io2020.PodzielSieKsiazka.retrofit;
 
+import com.io2020.PodzielSieKsiazka.schemas.AppUser;
 import com.io2020.PodzielSieKsiazka.schemas.Book;
 import com.io2020.PodzielSieKsiazka.schemas.GoogleUserBody;
 import com.io2020.PodzielSieKsiazka.schemas.User;
