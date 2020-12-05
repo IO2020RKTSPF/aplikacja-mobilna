@@ -149,22 +149,6 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                if(response.code() == 404) registerUser(user.getId(), user.getName());
-                else userID = response.body().get_id();
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void registerUser(String id, String name){
-        Call<User> call = retrofitAPI.registerGoogleUser(new GoogleUserBody(id, name));
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
                 userID = response.body().get_id();
             }
 
@@ -174,4 +158,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

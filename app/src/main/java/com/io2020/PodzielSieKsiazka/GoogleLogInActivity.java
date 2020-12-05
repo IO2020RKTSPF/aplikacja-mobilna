@@ -77,7 +77,7 @@ public class GoogleLogInActivity extends AppCompatActivity {
                             Toast.makeText(GoogleLogInActivity.this, "Firebase Authentication Succeeded ",  Toast.LENGTH_LONG).show();
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            intent.putExtra("AppUser", new AppUser(user.getTenantId(), user.getPhotoUrl().toString(), user.getDisplayName(), user.getEmail()));
+                            intent.putExtra("AppUser", new AppUser(user.getUid(), user.getPhotoUrl().toString(), user.getDisplayName(), user.getEmail()));
                             startActivity(intent);
                             finish();
                         } else {
