@@ -1,14 +1,14 @@
-package com.io2020.PodzielSieKsiazka.ui.gallery;
+package com.io2020.PodzielSieKsiazka.ui.yourList;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class YourListViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public YourListViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is gallery fragment");
     }

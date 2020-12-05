@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.io2020.PodzielSieKsiazka.ui.gallery.GalleryFragment"
+        android:name="com.io2020.PodzielSieKsiazka.ui.yourList.YourListFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_yourlist" />
 
     <fragment
         android:id="@+id/nav_slideshow"
