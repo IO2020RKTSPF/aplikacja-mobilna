@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import com.io2020.PodzielSieKsiazka.schemas.AppUser;
+import com.io2020.PodzielSieKsiazka.schemas.GoogleUserBody;
 import com.io2020.PodzielSieKsiazka.schemas.User;
 
 import retrofit2.Call;
@@ -74,8 +75,9 @@ public class GoogleLogInActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Log.d(TAG, "signInWithCredential:success: currentUser: " + user.getDisplayName());
                             Toast.makeText(GoogleLogInActivity.this, "Firebase Authentication Succeeded ",  Toast.LENGTH_LONG).show();
+
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            intent.putExtra("AppUser", new AppUser(0, user.getPhotoUrl().toString(), user.getDisplayName(), user.getEmail()));
+                            intent.putExtra("AppUser", new AppUser(user.getTenantId(), user.getPhotoUrl().toString(), user.getDisplayName(), user.getEmail()));
                             startActivity(intent);
                             finish();
                         } else {
@@ -101,5 +103,8 @@ public class GoogleLogInActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         signInToGoogle();
     }
+
+
+
 
 }
