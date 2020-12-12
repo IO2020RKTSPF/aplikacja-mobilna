@@ -9,6 +9,12 @@
     <string name="logout_button">Wyloguj się</string>
     <string name="search_hint">Wyszukaj tytuł...</string>
 
+    <string name="book_offer_creation_title">Dodaj ofertę wypożyczenia</string>
+    <string name="book_offer_title">Wpisz tytuł książki...</string>
+    <string name="book_offer_location">Wpisz lokalizację...</string>
+    <string name="book_offer_isbn">Wpisz numer isbn książki...</string>
+    <string name="book_offer_description">Wpisz opis...</string>
+
     <string name="menu_home">Wszystkie książki</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>

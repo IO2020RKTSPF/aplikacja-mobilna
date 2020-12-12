@@ -32,6 +32,8 @@ import androidx.appcompat.widget.Toolbar;
 
 
 import com.io2020.PodzielSieKsiazka.schemas.AppUser;
+import com.io2020.PodzielSieKsiazka.schemas.GoogleUserBody;
+import com.io2020.PodzielSieKsiazka.schemas.User;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Retrofit retrofit;
     public static RetrofitAPI retrofitAPI;
+    public static int userID;
 
 
     @Override
@@ -61,17 +64,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         createApi();
         AppUser appUser = (AppUser) getIntent().getSerializableExtra("AppUser");
+        loginUser(appUser);
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+        fab.setOnClickListener(view -> {
+            BookOffer.Create(this);
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -152,4 +152,20 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    private void loginUser(AppUser user){
+        Call<User> call = retrofitAPI.loginGoogleUser(user.getId());
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                userID = response.body().get_id();
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
+    }
+
 }
