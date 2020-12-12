@@ -37,7 +37,9 @@ public class YourListFragment extends Fragment {
         layoutManager = new GridLayoutManager(getContext(), 1);
         yourListRecyclerView.setHasFixedSize(true);
         yourListRecyclerView.setLayoutManager(layoutManager);
+
         yourListRecyclerAdapter = new YourListRecyclerAdapter();
+
         yourListRecyclerView.setAdapter(yourListRecyclerAdapter);
 
         return root;

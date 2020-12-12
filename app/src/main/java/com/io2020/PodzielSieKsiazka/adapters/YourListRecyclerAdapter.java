@@ -1,5 +1,6 @@
 package com.io2020.PodzielSieKsiazka.adapters;
 
+
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -14,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.io2020.PodzielSieKsiazka.MainActivity;
 import com.io2020.PodzielSieKsiazka.R;
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitAPI;
+
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitInstance;
+
 import com.io2020.PodzielSieKsiazka.schemas.AppUser;
 import com.io2020.PodzielSieKsiazka.schemas.Book;
 import com.io2020.PodzielSieKsiazka.schemas.User;
@@ -29,12 +32,14 @@ public class YourListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
 
     private List<Book> bookList;
 
-    public YourListRecyclerAdapter(){
+    public YourListRecyclerAdapter(RetrofitAPI retrofitAPI){
         fillBookList();
     }
 
     private void fillBookList(){
+
         Call<User> call = RetrofitInstance.GetAPI().getUserById(MainActivity.userID);
+
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
