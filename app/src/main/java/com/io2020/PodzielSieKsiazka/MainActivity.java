@@ -16,6 +16,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitAPI;
+import com.io2020.PodzielSieKsiazka.retrofit.RetrofitInstance;
 import com.io2020.PodzielSieKsiazka.schemas.Book;
 
 import android.widget.ImageView;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        createApi();
+        RetrofitInstance.Create();
         AppUser appUser = (AppUser) getIntent().getSerializableExtra("AppUser");
 
         setContentView(R.layout.activity_main);
@@ -124,20 +125,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    private void createApi(){
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.addInterceptor(logging);
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl(RetrofitAPI.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient.build())
-                .build();
-        retrofitAPI = retrofit.create(RetrofitAPI.class);
     }
 
     private void signOut(){

@@ -15,6 +15,7 @@ import retrofit2.http.Path;
 public interface RetrofitAPI {
     static final String BASE_URL = "http://podzielsieksiazka.northeurope.cloudapp.azure.com:8080/api/";
 
+
     @GET("users/{id}")
     Call<User> getUserById(@Path("id") int id);
 

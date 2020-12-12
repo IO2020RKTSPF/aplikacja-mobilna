@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.io2020.PodzielSieKsiazka.MainActivity;
 import com.io2020.PodzielSieKsiazka.R;
 import com.io2020.PodzielSieKsiazka.adapters.BookListRecyclerAdapter;
+import com.io2020.PodzielSieKsiazka.retrofit.RetrofitInstance;
 
 public class HomeFragment extends Fragment {
 
@@ -37,7 +38,7 @@ public class HomeFragment extends Fragment {
         layoutManager = new GridLayoutManager(getContext(), 1);
         bookListRecyclerView.setHasFixedSize(true);
         bookListRecyclerView.setLayoutManager(layoutManager);
-        bookListRecyclerAdapter = new BookListRecyclerAdapter(MainActivity.retrofitAPI);
+        bookListRecyclerAdapter = new BookListRecyclerAdapter();
         bookListRecyclerView.setAdapter(bookListRecyclerAdapter);
 
         return root;
