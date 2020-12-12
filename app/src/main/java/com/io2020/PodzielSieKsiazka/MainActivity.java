@@ -16,6 +16,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitAPI;
+import com.io2020.PodzielSieKsiazka.retrofit.RetrofitInstance;
 import com.io2020.PodzielSieKsiazka.schemas.Book;
 
 import android.widget.ImageView;
@@ -54,25 +55,28 @@ public class MainActivity extends AppCompatActivity {
     private TextView emailField;
     private ImageView imageView;
 
-    private Retrofit retrofit;
-    public static RetrofitAPI retrofitAPI;
     public static int userID;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        createApi();
+        RetrofitInstance.Create();
         AppUser appUser = (AppUser) getIntent().getSerializableExtra("AppUser");
         loginUser(appUser);
-
+      
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-            BookOffer.Create(this);
-        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), OfferActivity.class);
+                startActivity(intent);
+            }
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationHeader = navigationView.getHeaderView(0);
@@ -126,19 +130,21 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private void createApi(){
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.addInterceptor(logging);
+    private void loginUser(AppUser user){
+        Call<User> call = RetrofitInstance.GetAPI().loginGoogleUser(user.getId());
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                userID = response.body().get_id();
+            }
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl(RetrofitAPI.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient.build())
-                .build();
-        retrofitAPI = retrofit.create(RetrofitAPI.class);
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
     }
+
 
     private void signOut(){
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

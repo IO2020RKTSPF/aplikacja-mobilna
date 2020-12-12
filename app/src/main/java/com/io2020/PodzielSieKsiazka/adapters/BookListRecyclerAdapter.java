@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.io2020.PodzielSieKsiazka.R;
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitAPI;
+import com.io2020.PodzielSieKsiazka.retrofit.RetrofitInstance;
 import com.io2020.PodzielSieKsiazka.schemas.Book;
 
 import java.util.List;
@@ -22,16 +23,14 @@ import retrofit2.Response;
 
 public class BookListRecyclerAdapter extends androidx.recyclerview.widget.RecyclerView.Adapter<BookListRecyclerAdapter.ImageViewHolder> {
 
-    private RetrofitAPI retrofitAPI;
     private List<Book> bookList;
 
-    public BookListRecyclerAdapter(RetrofitAPI retrofitAPI){
-        this.retrofitAPI = retrofitAPI;
+    public BookListRecyclerAdapter(){
         fillBookList();
     }
 
     private void fillBookList(){
-        Call<List<Book>> call = retrofitAPI.getAllBooksList();
+        Call<List<Book>> call = RetrofitInstance.GetAPI().getAllBooksList();
         call.enqueue(new Callback<List<Book>>() {
             @Override
             public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {

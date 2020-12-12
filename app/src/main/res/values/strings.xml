@@ -9,11 +9,27 @@
     <string name="logout_button">Wyloguj się</string>
     <string name="search_hint">Wyszukaj tytuł...</string>
 
-    <string name="book_offer_creation_title">Dodaj ofertę wypożyczenia</string>
-    <string name="book_offer_title">Wpisz tytuł książki...</string>
-    <string name="book_offer_location">Wpisz lokalizację...</string>
-    <string name="book_offer_isbn">Wpisz numer isbn książki...</string>
-    <string name="book_offer_description">Wpisz opis...</string>
+    <string name="offerActivityTitle">Utwórz nową ofertę</string>
+    <string name="offerImage">Zdjęcie książki</string>
+    <string name="offerTitle">Tytuł</string>
+    <string name="offerTitleHint">Wpisz tytuł książki...</string>
+    <string name="offerAuthor">Autor</string>
+    <string name="offerAuthorHint">Wpisz autora...</string>
+    <string name="offerISBN">Numer ISBN</string>
+    <string name="offerISBNHint">Wpisz numer ISBN...</string>
+    <string name="offerCategory">Kategoria</string>
+    <string name="offerCategoryHint">Wybierz kategorię</string>
+    <string name="offerDescription">Opis</string>
+    <string name="offerDescriptionHint">Dodaj opis...</string>
+    <string name="offerSend">Utwórz ofertę</string>
+
+    <string-array name="CategoryList">
+        <item>Wybierz kategorię...</item>
+        <item>Kategoria1</item>
+        <item>Kategoria2</item>
+        <item>Kategoria3</item>
+    </string-array>
+
 
     <string name="menu_home">Wszystkie książki</string>
     <string name="menu_gallery">Gallery</string>

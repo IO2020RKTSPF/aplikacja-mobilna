@@ -8,7 +8,7 @@
     tools:context=".GoogleLogInActivity">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/offerBackgroundImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/loginbackground" />

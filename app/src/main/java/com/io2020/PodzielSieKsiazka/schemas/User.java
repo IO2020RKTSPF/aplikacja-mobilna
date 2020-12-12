@@ -5,12 +5,12 @@ import java.util.List;
 public class User {
     private int id;
     private String name;
-    private List<Book> bookList;
+    private List<Book> books;
 
     public User(int id, String name, List<Book> bookList){
         this.id = id;
         this.name = name;
-        this.bookList = bookList;
+        this.books = bookList;
     }
 
     public int get_id() {
@@ -30,10 +30,10 @@ public class User {
     }
 
     public List<Book> getBookList() {
-        return bookList;
+        return books;
     }
 
     public void setBookList(List<Book> bookList) {
-        this.bookList = bookList;
+        this.books = bookList;
     }
 }

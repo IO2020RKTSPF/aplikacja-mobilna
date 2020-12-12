@@ -1,5 +1,7 @@
 package com.io2020.PodzielSieKsiazka.adapters;
 
+
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.io2020.PodzielSieKsiazka.MainActivity;
 import com.io2020.PodzielSieKsiazka.R;
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitAPI;
+
+import com.io2020.PodzielSieKsiazka.retrofit.RetrofitInstance;
+
 import com.io2020.PodzielSieKsiazka.schemas.AppUser;
 import com.io2020.PodzielSieKsiazka.schemas.Book;
 import com.io2020.PodzielSieKsiazka.schemas.User;
@@ -25,16 +30,16 @@ import retrofit2.Response;
 
 public class YourListRecyclerAdapter extends androidx.recyclerview.widget.RecyclerView.Adapter<YourListRecyclerAdapter.ImageViewHolder> {
 
-    private RetrofitAPI retrofitAPI;
     private List<Book> bookList;
 
     public YourListRecyclerAdapter(RetrofitAPI retrofitAPI){
-        this.retrofitAPI = retrofitAPI;
         fillBookList();
     }
 
     private void fillBookList(){
-        Call<User> call = retrofitAPI.getUserById(MainActivity.userID);
+
+        Call<User> call = RetrofitInstance.GetAPI().getUserById(MainActivity.userID);
+
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -71,6 +76,7 @@ public class YourListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
         try {
             return bookList.size();
         } catch (Exception e){
+            Log.d("yourList: ", e.getMessage());
             return 0;
         }
     }
