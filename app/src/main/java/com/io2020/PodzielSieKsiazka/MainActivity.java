@@ -55,8 +55,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView emailField;
     private ImageView imageView;
 
-    private Retrofit retrofit;
-    public static RetrofitAPI retrofitAPI;
     public static int userID;
 
 
@@ -141,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loginUser(AppUser user){
-        Call<User> call = retrofitAPI.loginGoogleUser(user.getId());
+        Call<User> call = RetrofitInstance.GetAPI().loginGoogleUser(user.getId());
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
