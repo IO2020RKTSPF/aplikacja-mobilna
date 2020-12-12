@@ -10,10 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.io2020.PodzielSieKsiazka.MainActivity;
 import com.io2020.PodzielSieKsiazka.R;
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitAPI;
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitInstance;
+import com.io2020.PodzielSieKsiazka.schemas.AppUser;
 import com.io2020.PodzielSieKsiazka.schemas.Book;
+import com.io2020.PodzielSieKsiazka.schemas.User;
 
 import java.util.List;
 
@@ -21,25 +24,25 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BookListRecyclerAdapter extends androidx.recyclerview.widget.RecyclerView.Adapter<BookListRecyclerAdapter.ImageViewHolder> {
+public class YourListRecyclerAdapter extends androidx.recyclerview.widget.RecyclerView.Adapter<YourListRecyclerAdapter.ImageViewHolder> {
 
     private List<Book> bookList;
 
-    public BookListRecyclerAdapter(){
+    public YourListRecyclerAdapter(){
         fillBookList();
     }
 
     private void fillBookList(){
-        Call<List<Book>> call = RetrofitInstance.GetAPI().getAllBooksList();
-        call.enqueue(new Callback<List<Book>>() {
+        Call<User> call = RetrofitInstance.GetAPI().getUserById(MainActivity.userID);
+        call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
-                bookList = response.body();
+            public void onResponse(Call<User> call, Response<User> response) {
+                bookList = response.body().getBookList();
                 notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure(Call<List<Book>> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
 
             }
         });
@@ -58,8 +61,6 @@ public class BookListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
         try {
             holder.bookTitle.setText(bookList.get(position).getTitle());
             holder.bookAuthor.setText(bookList.get(position).getAuthor());
-            holder.bookLocation.setText(bookList.get(position).getUserId());
-            holder.bookOwner.setText(bookList.get(position).getUserId());
         } catch (Exception e){}
 
     }
@@ -77,17 +78,13 @@ public class BookListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
 
         ImageView bookCover;
         TextView bookTitle;
-        TextView bookLocation;
         TextView bookAuthor;
-        TextView bookOwner;
 
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
             bookCover = itemView.findViewById(R.id.bookcover);
             bookTitle = itemView.findViewById(R.id.booktitle);
-            bookLocation = itemView.findViewById(R.id.booklocation);
             bookAuthor = itemView.findViewById(R.id.bookauthor);
-            bookOwner = itemView.findViewById(R.id.bookowner);
         }
 
         @Override

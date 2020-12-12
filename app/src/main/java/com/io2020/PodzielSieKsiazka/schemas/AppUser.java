@@ -1,25 +1,26 @@
 package com.io2020.PodzielSieKsiazka.schemas;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class AppUser implements Serializable {
-    private int id;
+    private String id;
     private String imgUrl;
     private String name;
     private String email;
 
-    public AppUser(int id, String imgUrl, String name, String email) {
+    public AppUser(String id, String imgUrl, String name, String email) {
         this.id = id;
         this.imgUrl = imgUrl;
         this.name = name;
         this.email = email;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -46,4 +47,6 @@ public class AppUser implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.io2020.PodzielSieKsiazka.retrofit;
 
+import com.io2020.PodzielSieKsiazka.schemas.AppUser;
 import com.io2020.PodzielSieKsiazka.schemas.Book;
 import com.io2020.PodzielSieKsiazka.schemas.GoogleUserBody;
 import com.io2020.PodzielSieKsiazka.schemas.User;
@@ -14,6 +15,7 @@ import retrofit2.http.Path;
 
 public interface RetrofitAPI {
     static final String BASE_URL = "http://podzielsieksiazka.northeurope.cloudapp.azure.com:8080/api/";
+
 
     @GET("users/{id}")
     Call<User> getUserById(@Path("id") int id);
