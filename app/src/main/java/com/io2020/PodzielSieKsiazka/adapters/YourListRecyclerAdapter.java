@@ -1,5 +1,6 @@
 package com.io2020.PodzielSieKsiazka.adapters;
 
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,6 +71,7 @@ public class YourListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
         try {
             return bookList.size();
         } catch (Exception e){
+            Log.d("yourList: ", e.getMessage());
             return 0;
         }
     }
