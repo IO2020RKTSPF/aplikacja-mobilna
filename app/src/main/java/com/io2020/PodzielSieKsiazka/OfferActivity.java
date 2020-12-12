@@ -12,6 +12,7 @@ public class OfferActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.offerActivityTitle);
     }
 
     public boolean onOptionsItemSelected(MenuItem item){

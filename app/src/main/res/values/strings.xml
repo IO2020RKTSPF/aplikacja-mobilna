@@ -9,6 +9,7 @@
     <string name="logout_button">Wyloguj się</string>
     <string name="search_hint">Wyszukaj tytuł...</string>
 
+    <string name="offerActivityTitle">Utwórz nową ofertę</string>
     <string name="offerImage">Zdjęcie książki</string>
     <string name="offerTitle">Tytuł</string>
     <string name="offerTitleHint">Wpisz tytuł książki...</string>
