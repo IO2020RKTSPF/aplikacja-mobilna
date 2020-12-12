@@ -9,7 +9,7 @@ public class BookOffer {
     private Book book;
 
     public static void Create(Context mContext){
-        Intent intent = new Intent(mContext, BookOfferCreationActivity.class);
+        Intent intent = new Intent(mContext, OfferActivity.class);
         mContext.startActivity(intent);
 
     }
