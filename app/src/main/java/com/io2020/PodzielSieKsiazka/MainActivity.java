@@ -34,6 +34,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.io2020.PodzielSieKsiazka.schemas.AppUser;
 import com.io2020.PodzielSieKsiazka.schemas.GoogleUserBody;
+import com.io2020.PodzielSieKsiazka.schemas.LoginResponse;
 import com.io2020.PodzielSieKsiazka.schemas.User;
 import com.squareup.picasso.Picasso;
 import java.util.List;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
 
     public static int userID;
+    public static String token;
 
 
     @Override
@@ -71,11 +73,12 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), OfferActivity.class);
-                startActivity(intent);
-            }
+                                   @Override
+                                   public void onClick(View view) {
+                                       Intent intent = new Intent(getApplicationContext(), OfferActivity.class);
+                                       startActivity(intent);
+                                   }
+                               });
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -131,15 +134,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loginUser(AppUser user){
-        Call<User> call = RetrofitInstance.GetAPI().loginGoogleUser(user.getId());
-        call.enqueue(new Callback<User>() {
+        Call<LoginResponse> call = RetrofitInstance.GetAPI().loginGoogleUser(new GoogleUserBody(user.getId(), user.getName()){
+        });
+        call.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                userID = response.body().get_id();
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if(!response.isSuccessful()){
+                    Log.d("failed to login: ", user.getId() + " " + user.getName());
+                } else {
+                    userID = response.body().getUser().get_id();
+                    token = response.body().getToken();
+                    Log.d("id: ", "" + userID);
+                }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
 
             }
         });
@@ -159,19 +169,5 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    private void loginUser(AppUser user){
-        Call<User> call = retrofitAPI.loginGoogleUser(user.getId());
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                userID = response.body().get_id();
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-
-            }
-        });
-    }
 
 }

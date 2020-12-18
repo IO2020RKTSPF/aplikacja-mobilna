@@ -3,6 +3,7 @@ package com.io2020.PodzielSieKsiazka.retrofit;
 import com.io2020.PodzielSieKsiazka.schemas.AppUser;
 import com.io2020.PodzielSieKsiazka.schemas.Book;
 import com.io2020.PodzielSieKsiazka.schemas.GoogleUserBody;
+import com.io2020.PodzielSieKsiazka.schemas.LoginResponse;
 import com.io2020.PodzielSieKsiazka.schemas.User;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -20,11 +22,8 @@ public interface RetrofitAPI {
     @GET("users/{id}")
     Call<User> getUserById(@Path("id") int id);
 
-    @GET("users/login/{id}")
-    Call<User> loginGoogleUser(@Path("id") String googleId);
-
-    @POST("users")
-    Call<User> registerGoogleUser(@Body() GoogleUserBody googleUserBody);
+    @POST("users/login")
+    Call<LoginResponse> loginGoogleUser(@Body() GoogleUserBody body);
 
 
     @GET("books")
@@ -34,5 +33,5 @@ public interface RetrofitAPI {
     Call<Book> getBookById(@Path("id") int id);
 
     @POST("books")
-    Call<Book> addBook(@Body() Book book);
+    Call<Book> addBook(@Header("Authorization") String authorization, @Body() Book book);
 }

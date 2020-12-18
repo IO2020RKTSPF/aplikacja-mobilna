@@ -33,6 +33,11 @@ public class OfferActivity extends AppCompatActivity {
                 .findViewById(R.id.offerTitleEdit);
         String title = titleTextView.getText().toString();
 
+        TextView authorTextView = findViewById(R.id.offerTitleCategoryISBN)
+                .findViewById(R.id.offerAuthorEditLayout)
+                .findViewById(R.id.offerAuthorEdit);
+        String author = authorTextView.getText().toString();
+
         TextView isbnTextView = findViewById(R.id.offerTitleCategoryISBN)
                 .findViewById(R.id.offerISBNEditLayout)
                 .findViewById(R.id.offerISBNEdit);
@@ -43,8 +48,8 @@ public class OfferActivity extends AppCompatActivity {
                 .findViewById(R.id.offerDescriptionEdit);
         String description = descriptionTextView.getText().toString();
 
-        Book book = new Book(0, title, "test", isbn, true, description, "/test/test.jpg","2020-12-12T16:07:14.855Z" , MainActivity.userID);
-        Call<Book> call = RetrofitInstance.GetAPI().addBook(book);
+        Book book = new Book(title, author, isbn, description, "/test/test.jpg", MainActivity.userID);
+        Call<Book> call = RetrofitInstance.GetAPI().addBook("Bearer " + MainActivity.token, book);
         call.enqueue(new Callback<Book>() {
             @Override
             public void onResponse(Call<Book> call, Response<Book> response) {

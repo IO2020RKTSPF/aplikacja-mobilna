@@ -1,27 +1,27 @@
 package com.io2020.PodzielSieKsiazka.schemas;
 
 public class GoogleUserBody {
-    private String googleId;
-    private String googleName;
+    private String loginId;
+    private String name;
 
-    public GoogleUserBody(String googleId, String googleName) {
-        this.googleId = googleId;
-        this.googleName = googleName;
+    public GoogleUserBody(String loginId, String googleName) {
+        this.loginId = loginId;
+        this.name = googleName;
     }
 
-    public String getGoogleId() {
-        return googleId;
+    public String getLoginId() {
+        return loginId;
     }
 
-    public void setGoogleId(String googleId) {
-        this.googleId = googleId;
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
     }
 
     public String getGoogleName() {
-        return googleName;
+        return name;
     }
 
     public void setGoogleName(String googleName) {
-        this.googleName = googleName;
+        this.name = googleName;
     }
 }

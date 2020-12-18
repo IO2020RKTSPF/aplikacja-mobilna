@@ -79,6 +79,47 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/offerAuthorText"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/offerAuthor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/offerTitleEditLayout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/offerAuthorEditLayout"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/smallborder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/offerAuthorText">
+
+            <EditText
+                android:id="@+id/offerAuthorEdit"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+
+                android:layout_marginEnd="8dp"
+                android:background="#00000000"
+                android:ems="10"
+                android:hint="@string/offerAuthorHint"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -89,7 +130,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/offerCategory"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/offerTitleEditLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/offerAuthorEditLayout" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/offerCategoryLayout"
@@ -174,7 +215,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/offerDescriptionLayout"
             android:layout_width="0dp"
-            android:layout_height="200dp"
+            android:layout_height="140dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/bigborder"

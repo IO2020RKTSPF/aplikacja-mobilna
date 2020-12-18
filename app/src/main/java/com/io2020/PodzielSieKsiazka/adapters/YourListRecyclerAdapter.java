@@ -32,7 +32,7 @@ public class YourListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
 
     private List<Book> bookList;
 
-    public YourListRecyclerAdapter(RetrofitAPI retrofitAPI){
+    public YourListRecyclerAdapter(){
         fillBookList();
     }
 
