@@ -1,5 +1,7 @@
 package com.io2020.PodzielSieKsiazka.schemas;
 
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Book {
@@ -15,7 +17,18 @@ public class Book {
     private String imgUrl;
     @SerializedName("userId")
     private int userId;
+    @Nullable
+    @SerializedName("owner")
+    private Owner owner;
 
+    @Nullable
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(@Nullable Owner owner) {
+        this.owner = owner;
+    }
 
     public String getTitle() {
         return title;

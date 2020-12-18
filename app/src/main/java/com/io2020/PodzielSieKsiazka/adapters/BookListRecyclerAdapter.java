@@ -14,6 +14,7 @@ import com.io2020.PodzielSieKsiazka.R;
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitAPI;
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitInstance;
 import com.io2020.PodzielSieKsiazka.schemas.Book;
+import com.io2020.PodzielSieKsiazka.schemas.User;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ import retrofit2.Response;
 public class BookListRecyclerAdapter extends androidx.recyclerview.widget.RecyclerView.Adapter<BookListRecyclerAdapter.ImageViewHolder> {
 
     private List<Book> bookList;
+    private List<String> ownersList;
 
     public BookListRecyclerAdapter(){
         fillBookList();
@@ -58,8 +60,8 @@ public class BookListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
         try {
             holder.bookTitle.setText(bookList.get(position).getTitle());
             holder.bookAuthor.setText(bookList.get(position).getAuthor());
-            holder.bookLocation.setText(bookList.get(position).getUserId());
-            holder.bookOwner.setText(bookList.get(position).getUserId());
+            holder.bookLocation.setText("Bielsko-Biała");
+            holder.bookOwner.setText(bookList.get(position).getOwner().getName());
         } catch (Exception e){}
 
     }
