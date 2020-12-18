@@ -32,6 +32,6 @@
 
 
     <string name="menu_home">Wszystkie książki</string>
-    <string name="menu_gallery">Gallery</string>
+    <string name="menu_gallery">Twoje książki</string>
     <string name="menu_slideshow">Slideshow</string>
 </resources>

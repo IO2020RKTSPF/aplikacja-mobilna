@@ -35,14 +35,27 @@
             android:scaleY="0.5"
             android:src="@drawable/ic_search_solid" />
 
-        <EditText
-            android:id="@+id/searchTextField"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="240dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/search_hint"
-            android:inputType="textPersonName" />
+            android:background="@drawable/smallborder">
+
+            <EditText
+                android:id="@+id/searchTextField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:ems="10"
+                android:hint="@string/search_hint"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageButton
             android:id="@+id/filterButton"

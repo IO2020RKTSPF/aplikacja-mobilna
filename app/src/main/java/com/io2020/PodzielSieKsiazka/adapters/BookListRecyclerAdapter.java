@@ -25,7 +25,6 @@ import retrofit2.Response;
 public class BookListRecyclerAdapter extends androidx.recyclerview.widget.RecyclerView.Adapter<BookListRecyclerAdapter.ImageViewHolder> {
 
     private List<Book> bookList;
-    private List<String> ownersList;
 
     public BookListRecyclerAdapter(){
         fillBookList();
