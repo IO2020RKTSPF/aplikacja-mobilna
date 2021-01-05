@@ -33,7 +33,8 @@
             android:scaleType="fitCenter"
             android:scaleX="0.5"
             android:scaleY="0.5"
-            android:src="@drawable/ic_search_solid" />
+            android:src="@drawable/ic_search_solid"
+            android:theme="@style/iconTheme" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="240dp"
@@ -66,7 +67,8 @@
             android:scaleType="fitCenter"
             android:scaleX="0.5"
             android:scaleY="0.5"
-            android:src="@drawable/ic_filter_solid" />
+            android:src="@drawable/ic_filter_solid"
+            android:theme="@style/iconTheme" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

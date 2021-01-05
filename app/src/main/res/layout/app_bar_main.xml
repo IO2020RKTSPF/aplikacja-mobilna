@@ -9,6 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:elevation="0dp"
         android:theme="@style/Theme.PodzielSięKsiążką.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
@@ -16,9 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/backgroundColor"
-            app:popupTheme="@style/Theme.PodzielSięKsiążką.PopupOverlay"
+            android:theme="@style/ToolBarStyle"
             app:elevation="0dp"
-            />
+            app:popupTheme="@style/Theme.PodzielSięKsiążką.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

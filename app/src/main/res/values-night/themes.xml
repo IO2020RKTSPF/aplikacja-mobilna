@@ -10,9 +10,22 @@
         <item name="colorOnSecondary">#121212</item>
         <item name="colorPrimary">#121212</item>
         <item name="backgroundColor">#121212</item>
+        <item name="android:textColor">#dddddd</item>
+        <item name="iconTint">#dddddd</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
+        <!--<item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item> -->
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="iconTheme">
+        <item name="android:tint">#dddddd</item>
+    </style>
+
+    <style name="ToolBarStyle" parent="Theme.AppCompat">
+        <item name="android:textColorPrimary">#dddddd</item>
+        <item name="android:textColorSecondary">#dddddd</item>
+        <item name="actionMenuTextColor">#dddddd</item>
+    </style>
+
 </resources>
