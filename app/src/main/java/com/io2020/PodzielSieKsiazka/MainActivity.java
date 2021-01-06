@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
         Picasso.with(this)
                 .load(appUser.getImgUrl())
                 .resize(width / 5,width / 5)
+                .transform(new RoundedTransformation(720, 0))
                 .into(imageView);
 
         TextView logout = findViewById(R.id.nav_bottom)
