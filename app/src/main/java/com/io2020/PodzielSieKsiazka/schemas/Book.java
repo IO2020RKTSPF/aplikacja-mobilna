@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import com.google.gson.annotations.SerializedName;
 
 public class Book {
+    @SerializedName("id")
+    private int id;
     @SerializedName("title")
     private String title;
     @SerializedName("author")
@@ -15,8 +17,10 @@ public class Book {
     private String description;
     @SerializedName("imgUrl")
     private String imgUrl;
-    @SerializedName("userId")
-    private int userId;
+    @SerializedName("isAvaible")
+    private boolean isAvailable;
+    @SerializedName("addedDate")
+    private String addedDate;
     @Nullable
     @SerializedName("owner")
     private Owner owner;
@@ -70,21 +74,37 @@ public class Book {
         this.imgUrl = imgUrl;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getId() {
+        return id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Book(String title, String author, String isbn, String description, String imgUrl, int userId) {
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+
+    public String getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(String addedDate) {
+        this.addedDate = addedDate;
+    }
+
+    public Book(String title, String author, String isbn, String description, String imgUrl) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
         this.description = description;
         this.imgUrl = imgUrl;
-        this.userId = userId;
+
     }
 
 

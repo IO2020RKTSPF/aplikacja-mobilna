@@ -51,13 +51,14 @@ public class OfferActivity extends AppCompatActivity {
                 .findViewById(R.id.offerDescriptionEdit);
         String description = descriptionTextView.getText().toString();
 
-        Book book = new Book(title, author, isbn, description, "/test/test.jpg", MainActivity.userID);
+        Book book = new Book(title, author, isbn, description, "/test/test.jpg");
         Call<Book> call = RetrofitInstance.GetAPI().addBook("Bearer " + MainActivity.token, book);
         call.enqueue(new Callback<Book>() {
             @Override
             public void onResponse(Call<Book> call, Response<Book> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
                 else {
                     Toast.makeText(getApplicationContext(), response.message(), Toast.LENGTH_SHORT).show();
