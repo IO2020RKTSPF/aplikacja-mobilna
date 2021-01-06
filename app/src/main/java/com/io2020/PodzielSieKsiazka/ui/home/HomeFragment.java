@@ -1,5 +1,6 @@
 package com.io2020.PodzielSieKsiazka.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -16,7 +17,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.io2020.PodzielSieKsiazka.MainActivity;
+import com.io2020.PodzielSieKsiazka.OfferDescriptionActivity;
 import com.io2020.PodzielSieKsiazka.R;
+import com.io2020.PodzielSieKsiazka.RecyclerItemClickListener;
 import com.io2020.PodzielSieKsiazka.adapters.BookListRecyclerAdapter;
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitInstance;
 
@@ -40,6 +43,17 @@ public class HomeFragment extends Fragment {
         bookListRecyclerView.setLayoutManager(layoutManager);
         bookListRecyclerAdapter = new BookListRecyclerAdapter();
         bookListRecyclerView.setAdapter(bookListRecyclerAdapter);
+        bookListRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getActivity(), bookListRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(getActivity(), OfferDescriptionActivity.class);
+                        startActivity(intent);
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                    }
+                }));
 
         return root;
     }

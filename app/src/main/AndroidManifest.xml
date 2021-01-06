@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PodzielSięKsiążką"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OfferDescriptionActivity"></activity>
+        <activity android:name=".OfferDescriptionActivity"
+            android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar">
+        </activity>
         <activity android:name=".OfferActivity"
                 android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar"/>
         <activity

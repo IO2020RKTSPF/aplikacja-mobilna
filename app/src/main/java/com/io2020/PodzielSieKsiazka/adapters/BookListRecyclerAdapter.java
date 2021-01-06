@@ -54,6 +54,7 @@ public class BookListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
         return imageViewHolder;
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         try {
@@ -90,6 +91,7 @@ public class BookListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
             bookAuthor = itemView.findViewById(R.id.bookauthor);
             bookOwner = itemView.findViewById(R.id.bookowner);
         }
+
 
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
