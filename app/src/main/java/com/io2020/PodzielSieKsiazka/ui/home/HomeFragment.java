@@ -46,7 +46,11 @@ public class HomeFragment extends Fragment {
         bookListRecyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getActivity(), bookListRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
-                        Intent intent = new Intent(getActivity(), OfferDescriptionActivity.class);
+                        Intent intent = new Intent(getContext(), OfferDescriptionActivity.class);
+                        intent.putExtra("title", bookListRecyclerAdapter.bookList.get(position).getTitle());
+                        intent.putExtra("author", bookListRecyclerAdapter.bookList.get(position).getAuthor());
+                        intent.putExtra("owner", bookListRecyclerAdapter.bookList.get(position).getOwner().getName());
+                        intent.putExtra("description", bookListRecyclerAdapter.bookList.get(position).getDescription());
                         startActivity(intent);
                     }
 

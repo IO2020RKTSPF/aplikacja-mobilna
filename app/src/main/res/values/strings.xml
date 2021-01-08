@@ -24,6 +24,9 @@
     <string name="offerDescriptionHint">Dodaj opis...</string>
     <string name="offerSend">Utwórz ofertę</string>
 
+    <string name="sendRequest">Zapytaj o wypożyczenie</string>
+    <string name="owner">Właściciel</string>
+
     <string-array name="CategoryList">
         <item>Wybierz kategorię...</item>
         <item>Kategoria1</item>
