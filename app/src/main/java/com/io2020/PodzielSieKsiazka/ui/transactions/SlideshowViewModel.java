@@ -1,4 +1,4 @@
-package com.io2020.PodzielSieKsiazka.ui.slideshow;
+package com.io2020.PodzielSieKsiazka.ui.transactions;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

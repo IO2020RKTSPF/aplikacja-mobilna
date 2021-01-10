@@ -12,7 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PodzielSięKsiążką"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OfferActivity"></activity>
+        <activity android:name=".OfferDescriptionActivity"
+            android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar">
+        </activity>
+        <activity android:name=".OfferActivity"
+                android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar"/>
         <activity
             android:name=".GoogleLogInActivity"
             android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar">
@@ -25,7 +29,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar"></activity>
+            android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar" />
     </application>
 
 </manifest>

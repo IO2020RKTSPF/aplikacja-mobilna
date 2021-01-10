@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public class BookListRecyclerAdapter extends androidx.recyclerview.widget.RecyclerView.Adapter<BookListRecyclerAdapter.ImageViewHolder> {
 
-    private List<Book> bookList;
+    public List<Book> bookList;
 
     public BookListRecyclerAdapter(){
         fillBookList();
@@ -53,6 +53,7 @@ public class BookListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
         ImageViewHolder imageViewHolder = new ImageViewHolder(view);
         return imageViewHolder;
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
@@ -90,6 +91,7 @@ public class BookListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
             bookAuthor = itemView.findViewById(R.id.bookauthor);
             bookOwner = itemView.findViewById(R.id.bookowner);
         }
+
 
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
