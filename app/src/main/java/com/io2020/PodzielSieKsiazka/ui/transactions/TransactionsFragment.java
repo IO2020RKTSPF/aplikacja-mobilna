@@ -12,24 +12,28 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.io2020.PodzielSieKsiazka.MainActivity;
 import com.io2020.PodzielSieKsiazka.R;
+import com.io2020.PodzielSieKsiazka.retrofit.RetrofitInstance;
+import com.io2020.PodzielSieKsiazka.schemas.Transaction;
 
-public class SlideshowFragment extends Fragment {
+import java.util.List;
 
-    private SlideshowViewModel slideshowViewModel;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class TransactionsFragment extends Fragment {
+
+    private TransactionsViewModel transactionsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+        transactionsViewModel =
+                new ViewModelProvider(this).get(TransactionsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_transactions, container, false);
         final TextView textView = root.findViewById(R.id.text_slideshow);
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
         return root;
     }
 }
