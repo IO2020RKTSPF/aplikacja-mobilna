@@ -47,6 +47,7 @@ public class HomeFragment extends Fragment {
                 new RecyclerItemClickListener(getActivity(), bookListRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         Intent intent = new Intent(getContext(), OfferDescriptionActivity.class);
+                        intent.putExtra("id", bookListRecyclerAdapter.bookList.get(position).getId());
                         intent.putExtra("title", bookListRecyclerAdapter.bookList.get(position).getTitle());
                         intent.putExtra("author", bookListRecyclerAdapter.bookList.get(position).getAuthor());
                         intent.putExtra("owner", bookListRecyclerAdapter.bookList.get(position).getOwner().getName());
