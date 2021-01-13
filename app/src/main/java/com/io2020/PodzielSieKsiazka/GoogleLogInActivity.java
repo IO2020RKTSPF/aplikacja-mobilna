@@ -38,13 +38,7 @@ public class GoogleLogInActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_google_log_in);
-        findViewById(R.id.loginbuttonscenter)
-                .findViewById(R.id.loginbuttonsframe)
-                .findViewById(R.id.button)
-                .setOnClickListener(l -> {
-                    signIn();
-                });
+        initializeLoginScreen();
         signIn();
 
     }
@@ -53,12 +47,14 @@ public class GoogleLogInActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
+            setContentView(R.layout.splash_screen);
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
                 Log.w(TAG, "Google sign in failed", e);
+                initializeLoginScreen();
             }
         }
     }
@@ -99,6 +95,16 @@ public class GoogleLogInActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         mAuth = FirebaseAuth.getInstance();
         signInToGoogle();
+    }
+
+    private void initializeLoginScreen(){
+        setContentView(R.layout.activity_google_log_in);
+        findViewById(R.id.loginbuttonscenter)
+                .findViewById(R.id.loginbuttonsframe)
+                .findViewById(R.id.button)
+                .setOnClickListener(l -> {
+                    signIn();
+                });
     }
 
 

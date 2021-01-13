@@ -92,6 +92,8 @@ public class YourListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
             bookCover = itemView.findViewById(R.id.bookcover);
             bookTitle = itemView.findViewById(R.id.booktitle);
             bookAuthor = itemView.findViewById(R.id.bookauthor);
+            itemView.findViewById(R.id.bookowner).setVisibility(View.GONE);
+            itemView.findViewById(R.id.booklocation).setVisibility(View.GONE);
         }
 
         @Override
