@@ -12,11 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PodzielSięKsiążką"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OfferDescriptionActivity"
-            android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar">
-        </activity>
-        <activity android:name=".OfferActivity"
-                android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar"/>
+        <activity android:name=".TransactionDetailsActivity"
+            android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar"></activity>
+        <activity
+            android:name=".OfferDescriptionActivity"
+            android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar"></activity>
+        <activity
+            android:name=".OfferActivity"
+            android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar" />
         <activity
             android:name=".GoogleLogInActivity"
             android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar">

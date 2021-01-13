@@ -36,12 +36,15 @@ public class TransactionListRecyclerAdapter extends androidx.recyclerview.widget
     private List<Transaction> transactionList;
     private Context context;
 
-    public TransactionListRecyclerAdapter(Context context){
-        this.context = context;
-        fillBookList();
+    public List<Transaction> getTransactionList(){
+        return transactionList;
     }
 
-    private void fillBookList(){
+    public TransactionListRecyclerAdapter(Context context){
+        this.context = context;
+    }
+
+    public void fillBookList(){
 
         Call<List<Transaction>> call = RetrofitInstance.GetAPI().getAllTransactions("Bearer " + MainActivity.token);
 
@@ -71,6 +74,9 @@ public class TransactionListRecyclerAdapter extends androidx.recyclerview.widget
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         try {
             holder.bookTitle.setText(transactionList.get(position).getBook().getTitle());
+            if(transactionList.get(position).getCustomer().getId() == MainActivity.userID){
+                holder.bookCustomer.setVisibility(View.GONE);
+            }
             holder.bookCustomer.setText(transactionList.get(position).getCustomer().getName());
             holder.transactionStatus.setText(EnumLocalizer.LocalizeTransactionStatus(transactionList.get(position).getStatus(), context));
         } catch (Exception e){}

@@ -27,11 +27,25 @@
     <string name="sendRequest">Zapytaj o wypożyczenie</string>
     <string name="owner">Właściciel</string>
 
-    <string name="statusPending">Oczekujący</string>
-    <string name="statusAccepted">Zaakceptowany</string>
-    <string name="statusDeclined">Odrzucony</string>
-    <string name="statusRented">Wyporzyczony</string>
-    <string name="statusFinished">Zakończony</string>
+    <string name="statusPending">Oczekująca</string>
+    <string name="statusAccepted">Zaakceptowana</string>
+    <string name="statusDeclined">Odrzucona</string>
+    <string name="statusRented">Wypożyczona</string>
+    <string name="statusFinished">Zakończona</string>
+
+    <string name="transactionDetailsTitleOwner">Prośba od</string>
+    <string name="transactionDetailsTitleCustomer">Prośba do</string>
+    <string name="transactionTime">Wypożyczenie do:</string>
+    <string name="transactionAccept">Zaakceptuj</string>
+    <string name="transactionDecline">Odrzuć</string>
+    <string name="transactionEnd">Zakończ</string>
+    <string name="transactionRent">Wypożycz</string>
+
+    <string name="transactionPending">Twoja prośba oczekuje na akceptację.</string>
+    <string name="transactionAccepted">Twoja prośba została zaakceptowana. Naciśnij "Wypożycz" aby sfinalizować transakcję.</string>
+    <string name="transactionDeclined">Twoja prośba została odrzucona.</string>
+    <string name="transactionRented">Książka została wypożyczona.</string>
+    <string name="transactionFinished">Transakcja została zakończona.</string>
 
     <string-array name="CategoryList">
         <item>Wybierz kategorię...</item>
@@ -43,5 +57,5 @@
 
     <string name="menu_home">Wszystkie książki</string>
     <string name="menu_gallery">Twoje książki</string>
-    <string name="menu_slideshow">Oferty</string>
+    <string name="menu_slideshow">Transakcje</string>
 </resources>

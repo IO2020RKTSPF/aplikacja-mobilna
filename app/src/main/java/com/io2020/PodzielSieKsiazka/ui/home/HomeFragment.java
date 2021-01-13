@@ -62,4 +62,10 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        bookListRecyclerAdapter.fillBookList();
+    }
 }

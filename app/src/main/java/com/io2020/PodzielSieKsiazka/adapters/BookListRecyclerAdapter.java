@@ -27,15 +27,16 @@ public class BookListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
     public List<Book> bookList;
 
     public BookListRecyclerAdapter(){
-        fillBookList();
+
     }
 
-    private void fillBookList(){
+    public void fillBookList(){
         Call<List<Book>> call = RetrofitInstance.GetAPI().getAllBooksList();
         call.enqueue(new Callback<List<Book>>() {
             @Override
             public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
                 bookList = response.body();
+                bookList.removeIf(book -> !book.isAvailable());
                 notifyDataSetChanged();
             }
 

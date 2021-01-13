@@ -44,4 +44,9 @@ public class YourListFragment extends Fragment {
 
         return root;
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        yourListRecyclerAdapter.fillBookList();
+    }
 }
