@@ -108,7 +108,7 @@
             android:id="@+id/buttonAccept"
             android:layout_width="140dp"
             android:layout_height="50dp"
-            android:background="@drawable/offercreatebutton"
+            android:background="@drawable/button_ripple"
             android:onClick="acceptOffer"
             android:text="@string/transactionAccept" />
 
@@ -117,7 +117,7 @@
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:layout_marginStart="12dp"
-            android:background="@drawable/offercreatebutton"
+            android:background="@drawable/button_ripple"
             android:onClick="declineOffer"
             android:text="@string/transactionDecline" />
     </LinearLayout>
