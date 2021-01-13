@@ -23,7 +23,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -96,14 +99,24 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller,
+                                             @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                if(destination.getId() == R.id.nav_slideshow) {
+                    fab.setVisibility(View.GONE);
+                } else {
+                    fab.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
 
         nicknameField.setText(appUser.getName());
         emailField.setText(appUser.getEmail());
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
-        Toast.makeText(this, width + " " + height, Toast.LENGTH_SHORT).show();
         Picasso.with(this)
                 .load(appUser.getImgUrl())
                 .resize(width / 5,width / 5)

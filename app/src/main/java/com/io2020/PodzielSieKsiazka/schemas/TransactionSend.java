@@ -1,6 +1,6 @@
 package com.io2020.PodzielSieKsiazka.schemas;
 
-public class TransactionAcceptation {
+public class TransactionSend {
 
     private int bookId;
     private int daysOfRentalTime;

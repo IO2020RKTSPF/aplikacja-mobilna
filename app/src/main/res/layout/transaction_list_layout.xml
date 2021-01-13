@@ -7,8 +7,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:paddingTop="0dp"
-    android:paddingEnd="0dp"
-    android:paddingBottom="8dp">
+    android:paddingEnd="0dp">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -22,8 +21,8 @@
 
     <ImageView
         android:id="@+id/bookcover"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
 
@@ -35,11 +34,10 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:gravity="start"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/bookcover"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/transactionstatus"
         app:layout_constraintStart_toEndOf="@+id/bookcover"
         app:layout_constraintTop_toTopOf="@+id/bookcover">
 
@@ -55,28 +53,24 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/bookauthor"
+            android:id="@+id/bookcustomer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="Author"
             android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/booklocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Location"
-            android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/bookowner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Owner"
-            android:textSize="12sp" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/transactionstatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/bookcover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bookcover" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
