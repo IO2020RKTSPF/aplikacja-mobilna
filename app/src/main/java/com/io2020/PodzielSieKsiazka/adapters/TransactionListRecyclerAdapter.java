@@ -1,6 +1,7 @@
 package com.io2020.PodzielSieKsiazka.adapters;
 
 
+import android.content.Context;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.io2020.PodzielSieKsiazka.EnumLocalizer;
 import com.io2020.PodzielSieKsiazka.MainActivity;
 import com.io2020.PodzielSieKsiazka.R;
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitAPI;
@@ -32,8 +34,10 @@ import retrofit2.Response;
 public class TransactionListRecyclerAdapter extends androidx.recyclerview.widget.RecyclerView.Adapter<TransactionListRecyclerAdapter.ImageViewHolder> {
 
     private List<Transaction> transactionList;
+    private Context context;
 
-    public TransactionListRecyclerAdapter(){
+    public TransactionListRecyclerAdapter(Context context){
+        this.context = context;
         fillBookList();
     }
 
@@ -68,7 +72,7 @@ public class TransactionListRecyclerAdapter extends androidx.recyclerview.widget
         try {
             holder.bookTitle.setText(transactionList.get(position).getBook().getTitle());
             holder.bookCustomer.setText(transactionList.get(position).getCustomer().getName());
-            holder.transactionStatus.setText(transactionList.get(position).getStatus());
+            holder.transactionStatus.setText(EnumLocalizer.LocalizeTransactionStatus(transactionList.get(position).getStatus(), context));
         } catch (Exception e){}
 
     }

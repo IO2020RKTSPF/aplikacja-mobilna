@@ -27,6 +27,12 @@
     <string name="sendRequest">Zapytaj o wypożyczenie</string>
     <string name="owner">Właściciel</string>
 
+    <string name="statusPending">Oczekujący</string>
+    <string name="statusAccepted">Zaakceptowany</string>
+    <string name="statusDeclined">Odrzucony</string>
+    <string name="statusRented">Wyporzyczony</string>
+    <string name="statusFinished">Zakończony</string>
+
     <string-array name="CategoryList">
         <item>Wybierz kategorię...</item>
         <item>Kategoria1</item>

@@ -5,7 +5,7 @@ public class Transaction {
     private int id;
     private Owner customer;
     private Book book;
-    private String status;
+    private TransactionStatus status;
     private String dateTimeStart;
     private String dateTimeEnd;
 
@@ -33,11 +33,11 @@ public class Transaction {
         this.book = book;
     }
 
-    public String getStatus() {
+    public TransactionStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(TransactionStatus status) {
         this.status = status;
     }
 

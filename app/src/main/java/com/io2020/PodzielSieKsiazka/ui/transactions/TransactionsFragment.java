@@ -46,7 +46,7 @@ public class TransactionsFragment extends Fragment {
         transactionListRecyclerView.setHasFixedSize(true);
         transactionListRecyclerView.setLayoutManager(layoutManager);
 
-        transactionListRecyclerAdapter = new TransactionListRecyclerAdapter();
+        transactionListRecyclerAdapter = new TransactionListRecyclerAdapter(getContext());
 
         transactionListRecyclerView.setAdapter(transactionListRecyclerAdapter);
 

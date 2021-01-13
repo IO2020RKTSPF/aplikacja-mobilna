@@ -45,6 +45,7 @@ public class GoogleLogInActivity extends AppCompatActivity {
                 .setOnClickListener(l -> {
                     signIn();
                 });
+        signIn();
 
     }
 
