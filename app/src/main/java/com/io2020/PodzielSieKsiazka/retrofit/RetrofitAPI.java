@@ -43,10 +43,10 @@ public interface RetrofitAPI {
     Call<Transaction> getTransaction(@Header("Authorization") String authorization, int id);
 
     @POST("transactions")
-    Call<Transaction> acceptTransaction(@Header("Authorization") String authorization, @Body() TransactionSend transactionSend);
+    Call<Transaction> sendTransactionOffer(@Header("Authorization") String authorization, @Body() TransactionSend transactionSend);
 
     @PATCH("transactions/{id}")
-    Call<Transaction> sendTransactionOffer(@Header("Authorization") String authorization,@Path("id") int id, @Body() TransactionChange change);
+    Call<Transaction> changeTransaction(@Header("Authorization") String authorization,@Path("id") int id, @Body() TransactionChange change);
 
     @GET("transactions")
     Call<List<Transaction>> getAllTransactions(@Header("Authorization") String authorization);

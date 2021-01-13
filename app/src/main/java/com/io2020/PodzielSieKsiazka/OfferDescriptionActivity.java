@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -45,12 +46,23 @@ public class OfferDescriptionActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     public void sendRequest(View view){
         if(currentOfferId != -1) {
             TransactionSend transactionSend = new TransactionSend();
             transactionSend.setBookId(currentOfferId);
             transactionSend.setDaysOfRentalTime(5);
-            Call<Transaction> call = RetrofitInstance.GetAPI().acceptTransaction("Bearer " + MainActivity.token, transactionSend);
+            Call<Transaction> call = RetrofitInstance.GetAPI().sendTransactionOffer("Bearer " + MainActivity.token, transactionSend);
             call.enqueue(new Callback<Transaction>() {
                 @Override
                 public void onResponse(Call<Transaction> call, Response<Transaction> response) {

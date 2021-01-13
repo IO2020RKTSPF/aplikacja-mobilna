@@ -56,11 +56,9 @@ public class GoogleLogInActivity extends AppCompatActivity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                Toast.makeText(this, "Google Sign in Succeeded",  Toast.LENGTH_LONG).show();
                 firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
                 Log.w(TAG, "Google sign in failed", e);
-                Toast.makeText(this, "Google Sign in Failed " + e,  Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -75,7 +73,6 @@ public class GoogleLogInActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Log.d(TAG, "signInWithCredential:success: currentUser: " + user.getDisplayName());
-                            Toast.makeText(GoogleLogInActivity.this, "Firebase Authentication Succeeded ",  Toast.LENGTH_LONG).show();
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.putExtra("AppUser", new AppUser(user.getUid(), user.getPhotoUrl().toString(), user.getDisplayName(), user.getEmail()));
@@ -83,7 +80,6 @@ public class GoogleLogInActivity extends AppCompatActivity {
                             finish();
                         } else {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(GoogleLogInActivity.this, "Firebase Authentication failed:" + task.getException(),  Toast.LENGTH_LONG).show();
                         }
                     }
                 });
