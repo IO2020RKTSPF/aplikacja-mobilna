@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +22,11 @@ import retrofit2.Response;
 
 public class OfferActivity extends AppCompatActivity {
 
+    EditText titleTextView;
+    EditText authorTextView;
+    EditText isbnTextView;
+    EditText descriptionTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,28 +35,46 @@ public class OfferActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.offerActivityTitle);
+
+        titleTextView = findViewById(R.id.offerTitleCategoryISBN)
+                .findViewById(R.id.offerTitleEditLayout)
+                .findViewById(R.id.offerTitleEdit);
+        TextView titleCharacters = findViewById(R.id.offerTitleCategoryISBN).findViewById(R.id.titleCharacters);
+
+        titleTextView.addTextChangedListener(createTextWatcher(titleTextView, titleCharacters, 40));
+        titleCharacters.setText("0/40");
+
+
+        authorTextView = findViewById(R.id.offerTitleCategoryISBN)
+                .findViewById(R.id.offerAuthorEditLayout)
+                .findViewById(R.id.offerAuthorEdit);
+        TextView authorCharacters = findViewById(R.id.offerTitleCategoryISBN).findViewById(R.id.authorCharacters);
+
+        authorTextView.addTextChangedListener(createTextWatcher(authorTextView, authorCharacters, 40));
+        authorCharacters.setText("0/40");
+
+        isbnTextView = findViewById(R.id.offerTitleCategoryISBN)
+                .findViewById(R.id.offerISBNEditLayout)
+                .findViewById(R.id.offerISBNEdit);
+        TextView isbnCharacters = findViewById(R.id.isbnCharacters);
+
+        isbnTextView.addTextChangedListener(createTextWatcher(isbnTextView, isbnCharacters, 13));
+        isbnCharacters.setText("0/13");
+
+        descriptionTextView = findViewById(R.id.offerDescription)
+                .findViewById(R.id.offerDescriptionLayout)
+                .findViewById(R.id.offerDescriptionEdit);
+        TextView descriptionCharacters = findViewById(R.id.descriptionCharacters);
+
+        descriptionTextView.addTextChangedListener(createTextWatcher(descriptionTextView, descriptionCharacters, 300));
+        descriptionCharacters.setText("0/300");
     }
 
     public void sendOffer(View view){
 
-        TextView titleTextView = findViewById(R.id.offerTitleCategoryISBN)
-                .findViewById(R.id.offerTitleEditLayout)
-                .findViewById(R.id.offerTitleEdit);
         String title = titleTextView.getText().toString();
-
-        TextView authorTextView = findViewById(R.id.offerTitleCategoryISBN)
-                .findViewById(R.id.offerAuthorEditLayout)
-                .findViewById(R.id.offerAuthorEdit);
         String author = authorTextView.getText().toString();
-
-        TextView isbnTextView = findViewById(R.id.offerTitleCategoryISBN)
-                .findViewById(R.id.offerISBNEditLayout)
-                .findViewById(R.id.offerISBNEdit);
         String isbn = isbnTextView.getText().toString();
-
-        TextView descriptionTextView = findViewById(R.id.offerDescription)
-                .findViewById(R.id.offerDescriptionLayout)
-                .findViewById(R.id.offerDescriptionEdit);
         String description = descriptionTextView.getText().toString();
 
         Book book = new Book(title, author, isbn, description, "/test/test.jpg");
@@ -76,6 +102,26 @@ public class OfferActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         finish();
         return true;
+    }
+
+    private TextWatcher createTextWatcher(EditText toWatch, TextView countDisplay,  int limit){
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                countDisplay.setText(toWatch.getText().length() + "/" + limit);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+
     }
 
 }

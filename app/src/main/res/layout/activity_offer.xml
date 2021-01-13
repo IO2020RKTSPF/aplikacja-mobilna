@@ -66,6 +66,16 @@
         app:layout_constraintTop_toBottomOf="@+id/offerPhotoLayout">
 
         <TextView
+            android:id="@+id/authorCharacters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="TextView"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/offerAuthorEditLayout" />
+
+        <TextView
             android:id="@+id/offerTitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -198,7 +208,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
-
+                android:maxLength="13"
                 android:layout_marginEnd="8dp"
                 android:background="#00000000"
                 android:ems="10"
@@ -211,6 +221,16 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/titleCharacters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="TextView"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/offerTitleEditLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -247,19 +267,32 @@
             <EditText
                 android:id="@+id/offerDescriptionEdit"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
                 android:background="#00000000"
                 android:ems="10"
                 android:gravity="start|top"
                 android:hint="@string/offerDescriptionHint"
                 android:inputType="textMultiLine"
+                android:maxLength="300"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/descriptionCharacters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="TextView"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toTopOf="@+id/offerDescriptionLayout"
+            app:layout_constraintEnd_toEndOf="@+id/offerDescriptionLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -274,5 +307,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/offerDescription" />
+
+    <TextView
+        android:id="@+id/isbnCharacters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/offerTitleCategoryISBN"
+        app:layout_constraintTop_toBottomOf="@+id/offerTitleCategoryISBN" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

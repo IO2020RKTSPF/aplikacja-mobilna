@@ -75,6 +75,13 @@ public class TransactionDetailsActivity extends AppCompatActivity {
             acceptButton.setText(R.string.transactionEnd);
         }
 
+        if(status.equals(TransactionStatus.Finished.toString())){
+            View view = findViewById(R.id.view4);
+            view.setVisibility(View.GONE);
+            LinearLayout buttons = findViewById(R.id.ownerButtons);
+            buttons.setVisibility(View.GONE);
+        }
+
         transactionId = intent.getIntExtra("transactionId", -1);
     }
     @Override
