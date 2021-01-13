@@ -51,6 +51,7 @@ public class HomeFragment extends Fragment {
                         intent.putExtra("title", bookListRecyclerAdapter.bookList.get(position).getTitle());
                         intent.putExtra("author", bookListRecyclerAdapter.bookList.get(position).getAuthor());
                         intent.putExtra("owner", bookListRecyclerAdapter.bookList.get(position).getOwner().getName());
+                        intent.putExtra("ownerId", bookListRecyclerAdapter.bookList.get(position).getOwner().getId());
                         intent.putExtra("description", bookListRecyclerAdapter.bookList.get(position).getDescription());
                         startActivity(intent);
                     }

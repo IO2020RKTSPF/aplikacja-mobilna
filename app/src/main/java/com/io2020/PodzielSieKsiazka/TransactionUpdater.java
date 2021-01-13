@@ -10,8 +10,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TransactionUpdater {
-    public static boolean UpdateTransactionStatus(int transactionId, TransactionStatus status){
-        final boolean[] result = {false};
+    public static void UpdateTransactionStatus(int transactionId, TransactionStatus status){
         if(transactionId != -1) {
             TransactionChange change = new TransactionChange();
             change.Status = status;
@@ -19,7 +18,6 @@ public class TransactionUpdater {
             call.enqueue(new Callback<Transaction>() {
                 @Override
                 public void onResponse(Call<Transaction> call, Response<Transaction> response) {
-                    result[0] = true;
                 }
 
                 @Override
@@ -27,6 +25,5 @@ public class TransactionUpdater {
                 }
             });
         }
-        return result[0];
     }
 }

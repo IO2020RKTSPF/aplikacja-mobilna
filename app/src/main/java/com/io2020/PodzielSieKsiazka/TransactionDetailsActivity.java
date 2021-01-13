@@ -61,6 +61,13 @@ public class TransactionDetailsActivity extends AppCompatActivity {
             buttons.setVisibility(View.GONE);
         }
 
+        if(status.equals(TransactionStatus.Declined.toString())){
+            View view = findViewById(R.id.view4);
+            view.setVisibility(View.GONE);
+            LinearLayout buttons = findViewById(R.id.ownerButtons);
+            buttons.setVisibility(View.GONE);
+        }
+
         if(isOwner && status.equals(TransactionStatus.Accepted.toString())){
             Button cancelButton = findViewById(R.id.ownerButtons).findViewById(R.id.buttonDecline);
             cancelButton.setVisibility(View.GONE);
@@ -82,6 +89,8 @@ public class TransactionDetailsActivity extends AppCompatActivity {
             buttons.setVisibility(View.GONE);
         }
 
+        displayNotice(status);
+
         transactionId = intent.getIntExtra("transactionId", -1);
     }
     @Override
@@ -98,20 +107,57 @@ public class TransactionDetailsActivity extends AppCompatActivity {
     public void acceptOffer(View view){
         if(status.equals(TransactionStatus.Pending.toString())){
             TransactionUpdater.UpdateTransactionStatus(transactionId, TransactionStatus.Accepted);
+            finish();
             return;
         }
         if(status.equals(TransactionStatus.Accepted.toString())){
             TransactionUpdater.UpdateTransactionStatus(transactionId, TransactionStatus.Rented);
+            finish();
             return;
         }
         if(status.equals(TransactionStatus.Rented.toString())){
             TransactionUpdater.UpdateTransactionStatus(transactionId, TransactionStatus.Finished);
+            finish();
         }
 
     }
 
     public void declineOffer(View view){
-        if(TransactionUpdater.UpdateTransactionStatus(transactionId, TransactionStatus.Declined))
-            finish();
+        TransactionUpdater.UpdateTransactionStatus(transactionId, TransactionStatus.Declined);
+        finish();
+    }
+
+    private void displayNotice(String status){
+        ConstraintLayout noticeLayout = findViewById(R.id.noticeLayout);
+        noticeLayout.setVisibility(View.VISIBLE);
+        TextView notice = noticeLayout.findViewById(R.id.notice);
+        TextView noticeOk = noticeLayout.findViewById(R.id.noticeOK);
+
+        switch (status){
+            case "Pending":{
+                notice.setText(R.string.noticePending);
+                break;
+            }
+            case "Declined":{
+                notice.setText(R.string.noticeDeclined);
+                break;
+            }
+            case "Accepted":{
+                notice.setText(R.string.noticeAccepted);
+                break;
+            }
+            case "Rented":{
+                notice.setText(R.string.noticeRented);
+                break;
+            }
+            case "Finished":{
+                notice.setText(R.string.noticeFinished);
+                break;
+            }
+        }
+
+        noticeOk.setOnClickListener(l -> {
+            noticeLayout.setVisibility(View.GONE);
+        });
     }
 }

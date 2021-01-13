@@ -25,6 +25,7 @@
     <string name="offerSend">Utwórz ofertę</string>
 
     <string name="sendRequest">Zapytaj o wypożyczenie</string>
+    <string name="requestSent">Wysłano zapytanie</string>
     <string name="owner">Właściciel</string>
 
     <string name="statusPending">Oczekująca</string>
@@ -46,6 +47,13 @@
     <string name="transactionDeclined">Twoja prośba została odrzucona.</string>
     <string name="transactionRented">Książka została wypożyczona.</string>
     <string name="transactionFinished">Transakcja została zakończona.</string>
+
+    <string name="noticeOK">OK</string>
+    <string name="noticePending">Prośba oczekuje na odpowiedź od właściciela.</string>
+    <string name="noticeAccepted">Prośba została zaakceptowana. Po zakończeniu transakcji z właścicielem, ten zmieni status na Wypożyczona.</string>
+    <string name="noticeDeclined">Prośba została odrzucona.</string>
+    <string name="noticeRented">Książka została odebrana.</string>
+    <string name="noticeFinished">Transakcja została zakończona.</string>
 
     <string-array name="CategoryList">
         <item>Wybierz kategorię...</item>

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitInstance;
@@ -39,6 +40,11 @@ public class OfferDescriptionActivity extends AppCompatActivity {
 
         currentOfferId = intent.getIntExtra("id", -1);
 
+        Button button = findViewById(R.id.buttonSendOffer);
+        if(MainActivity.userID == intent.getIntExtra("ownerId", -1)){
+            button.setVisibility(View.GONE);
+        }
+
         title.setText(intent.getStringExtra("title"));
         author.setText(intent.getStringExtra("author"));
         owner.setText(intent.getStringExtra("owner"));
@@ -66,7 +72,10 @@ public class OfferDescriptionActivity extends AppCompatActivity {
             call.enqueue(new Callback<Transaction>() {
                 @Override
                 public void onResponse(Call<Transaction> call, Response<Transaction> response) {
-
+                    if(response.isSuccessful()){
+                        Button button = findViewById(R.id.buttonSendOffer);
+                        button.setText(R.string.requestSent);
+                    }
                 }
 
                 @Override
