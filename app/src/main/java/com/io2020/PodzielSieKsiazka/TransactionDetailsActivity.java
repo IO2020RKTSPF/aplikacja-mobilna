@@ -49,7 +49,7 @@ public class TransactionDetailsActivity extends AppCompatActivity implements Roo
 
     private String name;
 
-    private String channelID ="sTdWiVeudkHxFmVg" ;
+    final private String channelID ="sTdWiVeudkHxFmVg" ;
     private String roomName;
     private EditText editText;
     private Scaledrone scaledrone;
@@ -79,12 +79,14 @@ public class TransactionDetailsActivity extends AppCompatActivity implements Roo
 
         isOwner = intent.getBooleanExtra("isOwner",false);
 
+        LinearLayout editLayout = findViewById(R.id.messageEditLayout);
+
         if(isOwner) {
             getSupportActionBar().setTitle(getString(R.string.transactionDetailsTitleOwner) + " " + intent.getStringExtra("customer"));
-            name = intent.getStringExtra("owner");
+            name = intent.getStringExtra("customer");
         } else {
             getSupportActionBar().setTitle(getString(R.string.transactionDetailsTitleCustomer) + " " + intent.getStringExtra("owner"));
-            name = intent.getStringExtra("customer");
+            name = intent.getStringExtra("owner");
         }
 
         if(!isOwner){
@@ -99,6 +101,7 @@ public class TransactionDetailsActivity extends AppCompatActivity implements Roo
             view.setVisibility(View.GONE);
             LinearLayout buttons = findViewById(R.id.ownerButtons);
             buttons.setVisibility(View.GONE);
+            editLayout.setVisibility(View.GONE);
         }
 
         if(isOwner && status.equals(TransactionStatus.Accepted.toString())){
@@ -120,6 +123,7 @@ public class TransactionDetailsActivity extends AppCompatActivity implements Roo
             view.setVisibility(View.GONE);
             LinearLayout buttons = findViewById(R.id.ownerButtons);
             buttons.setVisibility(View.GONE);
+            editLayout.setVisibility(View.GONE);
         }
 
         displayNotice(status);
@@ -170,16 +174,34 @@ public class TransactionDetailsActivity extends AppCompatActivity implements Roo
                 room.listenToHistoryEvents(new HistoryRoomListener() {
                     @Override
                     public void onHistoryMessage(Room room, com.scaledrone.lib.Message receivedMessage) {
+                        boolean belongsToCurrentUser = false;
+                        String mess = receivedMessage.getData().asText();
+                        MemberData data = new MemberData();
+                        if(isOwner){
+                            if(mess.startsWith("[O]")) {
+                                belongsToCurrentUser = true;
+                            }
+                        }
+                        if(!isOwner){
+                            if(mess.startsWith("[C]"))
+                                belongsToCurrentUser = true;
+                        }
 
-                            final MemberData data = new MemberData();
-                            final Message message = new Message(receivedMessage.getData().asText(), data);
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    messageAdapter.add(message);
-                                    messagesView.setSelection(messagesView.getCount() - 1);
-                                }
-                            });
+                        data.setName(name);
+
+                        mess = mess.substring(3);
+
+                        Message message = new Message(mess, data);
+                        message.setBelongsToCurrentUser(belongsToCurrentUser);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                messageAdapter.add(message);
+                                messagesView.setSelection(messagesView.getCount() - 1);
+                            }
+                        });
+
+
 
                         System.out.println(receivedMessage.getData().asText());
                         System.out.println(receivedMessage.getClientID());
@@ -272,7 +294,11 @@ public class TransactionDetailsActivity extends AppCompatActivity implements Roo
     }
 
     public void sendMessage(View view) {
-        String message = name + ": " + editText.getText().toString();
+        String message;
+        if(isOwner)
+            message = "[O]" + editText.getText().toString();
+        else
+            message = "[C]" + editText.getText().toString();
         if (message.length() > 0) {
             scaledrone.publish(roomName, message);
             editText.getText().clear();
@@ -294,7 +320,20 @@ public class TransactionDetailsActivity extends AppCompatActivity implements Roo
         final ObjectMapper mapper = new ObjectMapper();
         try {
             final MemberData data = mapper.treeToValue(receivedMessage.getMember().getClientData(), MemberData.class);
-            final Message message = new Message(receivedMessage.getData().asText(), data);
+            boolean belongsToCurrentUser = false;
+            String mess = receivedMessage.getData().asText();
+            if(isOwner){
+                if(mess.startsWith("[O]"))
+                    belongsToCurrentUser = true;
+            }
+            if(!isOwner){
+                if(mess.startsWith("[C]"))
+                    belongsToCurrentUser = true;
+            }
+            mess = mess.substring(3);
+
+            Message message = new Message(mess, data);
+            message.setBelongsToCurrentUser(belongsToCurrentUser);
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

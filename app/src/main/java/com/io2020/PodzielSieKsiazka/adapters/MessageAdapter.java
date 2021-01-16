@@ -51,13 +51,20 @@ public class MessageAdapter extends BaseAdapter {
         MessageViewHolder holder = new MessageViewHolder();
         LayoutInflater messageInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         Message message = messages.get(i);
-
-         // this message was sent by someone else so let's create an advanced chat bubble on the left
+        if (message.isBelongsToCurrentUser()) {
+            convertView = messageInflater.inflate(R.layout.my_message, null);
+            holder.messageBody = (TextView) convertView.findViewById(R.id.message_body);
+            convertView.setTag(holder);
+            holder.messageBody.setText(message.getText());
+        } else {
             convertView = messageInflater.inflate(R.layout.their_message, null);
+            holder.name = (TextView) convertView.findViewById(R.id.name);
             holder.messageBody = (TextView) convertView.findViewById(R.id.message_body);
             convertView.setTag(holder);
 
+            holder.name.setText(message.getMemberData().getName());
             holder.messageBody.setText(message.getText());
+        }
 
 
         return convertView;
