@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.io2020.PodzielSieKsiazka.ui.gallery.GalleryFragment"
+        android:name="com.io2020.PodzielSieKsiazka.ui.yourList.YourListFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_yourlist" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.io2020.PodzielSieKsiazka.ui.slideshow.SlideshowFragment"
+        android:name="com.io2020.PodzielSieKsiazka.ui.transactions.TransactionsFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_transactions" />
 </navigation>

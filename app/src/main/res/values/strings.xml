@@ -5,9 +5,65 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="action_about">O aplikacji</string>
+    <string name="logout_button">Wyloguj się</string>
+    <string name="search_hint">Wyszukaj tytuł...</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="offerActivityTitle"> </string>
+    <string name="offerImage">Zdjęcie książki</string>
+    <string name="offerTitle">Tytuł</string>
+    <string name="offerTitleHint">Wpisz tytuł książki...</string>
+    <string name="offerAuthor">Autor</string>
+    <string name="offerAuthorHint">Wpisz autora...</string>
+    <string name="offerISBN">Numer ISBN</string>
+    <string name="offerISBNHint">Wpisz numer ISBN...</string>
+    <string name="offerCategory">Kategoria</string>
+    <string name="offerCategoryHint">Wybierz kategorię</string>
+    <string name="offerDescription">Opis</string>
+    <string name="offerDescriptionHint">Dodaj opis...</string>
+    <string name="offerSend">Utwórz ofertę</string>
+
+    <string name="sendRequest">Zapytaj o wypożyczenie</string>
+    <string name="requestSent">Wysłano zapytanie</string>
+    <string name="owner">Właściciel</string>
+
+    <string name="statusPending">Oczekująca</string>
+    <string name="statusAccepted">Zaakceptowana</string>
+    <string name="statusDeclined">Odrzucona</string>
+    <string name="statusRented">Wypożyczona</string>
+    <string name="statusFinished">Zakończona</string>
+
+    <string name="transactionDetailsTitleOwner">Prośba od</string>
+    <string name="transactionDetailsTitleCustomer">Prośba do</string>
+    <string name="transactionTime">Wypożyczenie do:</string>
+    <string name="transactionAccept">Zaakceptuj</string>
+    <string name="transactionDecline">Odrzuć</string>
+    <string name="transactionEnd">Zakończ</string>
+    <string name="transactionRent">Wypożycz</string>
+
+    <string name="transactionPending">Twoja prośba oczekuje na akceptację.</string>
+    <string name="transactionAccepted">Twoja prośba została zaakceptowana. Naciśnij "Wypożycz" aby sfinalizować transakcję.</string>
+    <string name="transactionDeclined">Twoja prośba została odrzucona.</string>
+    <string name="transactionRented">Książka została wypożyczona.</string>
+    <string name="transactionFinished">Transakcja została zakończona.</string>
+
+    <string name="noticeOK">OK</string>
+    <string name="noticePending">Prośba oczekuje na odpowiedź od właściciela.</string>
+    <string name="noticeAccepted">Prośba została zaakceptowana. Po zakończeniu transakcji z właścicielem, ten zmieni status na Wypożyczona.</string>
+    <string name="noticeDeclined">Prośba została odrzucona.</string>
+    <string name="noticeRented">Książka została odebrana.</string>
+    <string name="noticeFinished">Transakcja została zakończona.</string>
+
+    <string-array name="CategoryList">
+        <item>Wybierz kategorię...</item>
+        <item>Kategoria1</item>
+        <item>Kategoria2</item>
+        <item>Kategoria3</item>
+    </string-array>
+
+
+    <string name="menu_home">Wszystkie książki</string>
+    <string name="menu_gallery">Twoje książki</string>
+    <string name="menu_slideshow">Transakcje</string>
 </resources>

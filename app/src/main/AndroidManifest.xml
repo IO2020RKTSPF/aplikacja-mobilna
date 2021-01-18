@@ -2,16 +2,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.io2020.PodzielSieKsiazka">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PodzielSięKsiążką">
+        android:theme="@style/Theme.PodzielSięKsiążką"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".TransactionDetailsActivity"
+            android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar"></activity>
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
+            android:name=".OfferDescriptionActivity"
+            android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar"></activity>
+        <activity
+            android:name=".OfferActivity"
+            android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar" />
+        <activity
+            android:name=".GoogleLogInActivity"
             android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +29,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.PodzielSięKsiążką.NoActionBar" />
     </application>
 
 </manifest>
