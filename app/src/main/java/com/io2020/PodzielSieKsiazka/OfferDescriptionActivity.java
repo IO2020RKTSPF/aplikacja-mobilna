@@ -37,6 +37,7 @@ public class OfferDescriptionActivity extends AppCompatActivity {
         TextView author = findViewById(R.id.bookAuthor);
         TextView owner = findViewById(R.id.bookOwner);
         TextView description = findViewById(R.id.bookDescription);
+        TextView category = findViewById(R.id.bookCategory);
 
         currentOfferId = intent.getIntExtra("id", -1);
 
@@ -49,6 +50,7 @@ public class OfferDescriptionActivity extends AppCompatActivity {
         author.setText(intent.getStringExtra("author"));
         owner.setText(intent.getStringExtra("owner"));
         description.setText(intent.getStringExtra("description"));
+        category.setText(intent.getStringExtra("category"));
 
     }
 

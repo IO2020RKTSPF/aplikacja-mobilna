@@ -53,6 +53,7 @@ public class HomeFragment extends Fragment {
                         intent.putExtra("owner", bookListRecyclerAdapter.bookList.get(position).getOwner().getName());
                         intent.putExtra("ownerId", bookListRecyclerAdapter.bookList.get(position).getOwner().getId());
                         intent.putExtra("description", bookListRecyclerAdapter.bookList.get(position).getDescription());
+                        intent.putExtra("category", bookListRecyclerAdapter.bookList.get(position).getCategory().toString());
                         startActivity(intent);
                     }
 

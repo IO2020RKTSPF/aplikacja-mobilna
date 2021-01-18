@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitInstance;
 import com.io2020.PodzielSieKsiazka.schemas.Book;
+import com.io2020.PodzielSieKsiazka.schemas.BookCategory;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,6 +28,7 @@ public class OfferActivity extends AppCompatActivity {
     EditText authorTextView;
     EditText isbnTextView;
     EditText descriptionTextView;
+    Spinner categorySpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,11 @@ public class OfferActivity extends AppCompatActivity {
 
         descriptionTextView.addTextChangedListener(createTextWatcher(descriptionTextView, descriptionCharacters, 300));
         descriptionCharacters.setText("0/300");
+
+        categorySpinner = findViewById(R.id.offerTitleCategoryISBN).findViewById(R.id.offerCategoryLayout).findViewById(R.id.offerSpinner);
+
+        categorySpinner.setAdapter(new ArrayAdapter<BookCategory>(this, android.R.layout.simple_spinner_dropdown_item, BookCategory.values()));
+
     }
 
     public void sendOffer(View view){
@@ -76,8 +84,9 @@ public class OfferActivity extends AppCompatActivity {
         String author = authorTextView.getText().toString();
         String isbn = isbnTextView.getText().toString();
         String description = descriptionTextView.getText().toString();
+        BookCategory category = (BookCategory) categorySpinner.getSelectedItem();
 
-        Book book = new Book(title, author, isbn, description, "/test/test.jpg");
+        Book book = new Book(title, author, isbn, description, "/test/test.jpg", category);
         Call<Book> call = RetrofitInstance.GetAPI().addBook("Bearer " + MainActivity.token, book);
         call.enqueue(new Callback<Book>() {
             @Override
