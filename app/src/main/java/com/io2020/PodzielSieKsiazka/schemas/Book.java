@@ -15,6 +15,8 @@ public class Book {
     private String isbn;
     @SerializedName("description")
     private String description;
+    @SerializedName("category")
+    private BookCategory category;
     @SerializedName("imgUrl")
     private String imgUrl;
     @SerializedName("isAvaible")
@@ -24,6 +26,14 @@ public class Book {
     @Nullable
     @SerializedName("owner")
     private Owner owner;
+
+    public BookCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(BookCategory category) {
+        this.category = category;
+    }
 
     @Nullable
     public Owner getOwner() {
@@ -98,12 +108,13 @@ public class Book {
         this.addedDate = addedDate;
     }
 
-    public Book(String title, String author, String isbn, String description, String imgUrl) {
+    public Book(String title, String author, String isbn, String description, String imgUrl, BookCategory category) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
         this.description = description;
         this.imgUrl = imgUrl;
+        this.category = category;
 
     }
 
