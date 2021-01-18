@@ -8,6 +8,7 @@ public class Transaction {
     private TransactionStatus status;
     private String dateTimeStart;
     private String dateTimeEnd;
+    private String roomId;
 
     public int getId() {
         return id;
@@ -55,5 +56,13 @@ public class Transaction {
 
     public void setDateTimeEnd(String dateTimeEnd) {
         this.dateTimeEnd = dateTimeEnd;
+    }
+
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
     }
 }

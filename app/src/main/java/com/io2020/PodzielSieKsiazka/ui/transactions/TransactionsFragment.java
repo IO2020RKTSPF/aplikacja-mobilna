@@ -71,6 +71,7 @@ public class TransactionsFragment extends Fragment {
                         intent.putExtra("endDate", endDate.split("T")[0]);
                         intent.putExtra("owner", transactions.get(position).getBook().getOwner().getName());
                         intent.putExtra("status", transactions.get(position).getStatus().toString());
+                        intent.putExtra("roomId", transactions.get(position).getRoomId());
                         startActivity(intent);
                     }
 
