@@ -70,7 +70,7 @@ public class OfferDescriptionActivity extends AppCompatActivity {
             TransactionSend transactionSend = new TransactionSend();
             transactionSend.setBookId(currentOfferId);
             transactionSend.setDaysOfRentalTime(5);
-            Call<Transaction> call = RetrofitInstance.GetAPI().sendTransactionOffer("Bearer " + MainActivity.token, transactionSend);
+            Call<Transaction> call = RetrofitInstance.GetInstance().GetAPI().sendTransactionOffer("Bearer " + MainActivity.token, transactionSend);
             call.enqueue(new Callback<Transaction>() {
                 @Override
                 public void onResponse(Call<Transaction> call, Response<Transaction> response) {

@@ -26,26 +26,7 @@ public class BookListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
 
     public List<Book> bookList;
 
-    public BookListRecyclerAdapter(){
-
-    }
-
-    public void fillBookList(){
-        Call<List<Book>> call = RetrofitInstance.GetAPI().getAllBooksList();
-        call.enqueue(new Callback<List<Book>>() {
-            @Override
-            public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
-                bookList = response.body();
-                bookList.removeIf(book -> !book.isAvailable());
-                notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(Call<List<Book>> call, Throwable t) {
-
-            }
-        });
-    }
+    public BookListRecyclerAdapter(){ }
 
     @NonNull
     @Override
@@ -98,6 +79,24 @@ public class BookListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             menu.add(this.getAdapterPosition(), 121, 0, "Delete");
         }
+    }
+
+
+    public void fillBookList(){
+        Call<List<Book>> call = RetrofitInstance.GetInstance().GetAPI().getAllBooksList();
+        call.enqueue(new Callback<List<Book>>() {
+            @Override
+            public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
+                bookList = response.body();
+                bookList.removeIf(book -> !book.isAvailable());
+                notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<Book>> call, Throwable t) {
+
+            }
+        });
     }
 
 }

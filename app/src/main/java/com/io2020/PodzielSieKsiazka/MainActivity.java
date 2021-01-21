@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loginUser(AppUser user){
-        Call<LoginResponse> call = RetrofitInstance.GetAPI().loginGoogleUser(new GoogleUserBody(user.getId(), user.getName()){
+        Call<LoginResponse> call = RetrofitInstance.GetInstance().GetAPI().loginGoogleUser(new GoogleUserBody(user.getId(), user.getName()){
         });
         call.enqueue(new Callback<LoginResponse>() {
             @Override

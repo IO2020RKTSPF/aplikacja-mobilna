@@ -46,7 +46,7 @@ public class TransactionListRecyclerAdapter extends androidx.recyclerview.widget
 
     public void fillBookList(){
 
-        Call<List<Transaction>> call = RetrofitInstance.GetAPI().getAllTransactions("Bearer " + MainActivity.token);
+        Call<List<Transaction>> call = RetrofitInstance.GetInstance().GetAPI().getAllTransactions("Bearer " + MainActivity.token);
 
         call.enqueue(new Callback<List<Transaction>>() {
             @Override

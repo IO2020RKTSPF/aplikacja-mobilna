@@ -12,16 +12,16 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitInstance {
-    private static RetrofitAPI retrofitAPI;
-    private static Retrofit retrofit;
+    private final RetrofitAPI retrofitAPI;
     private static RetrofitInstance _instance;
 
-    private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+    private static final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
-    private static Retrofit.Builder builder =
+    private static final Retrofit.Builder builder =
             new Retrofit.Builder()
                     .baseUrl(RetrofitAPI.BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create());
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(httpClient.build());
 
 
     private RetrofitInstance(){
@@ -31,11 +31,7 @@ public class RetrofitInstance {
         httpClient.addInterceptor(logging);
 
 
-        retrofit = new retrofit2.Retrofit.Builder()
-                .baseUrl(RetrofitAPI.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient.build())
-                .build();
+        Retrofit retrofit = builder.build();
         retrofitAPI = retrofit.create(RetrofitAPI.class);
     }
 
@@ -47,8 +43,8 @@ public class RetrofitInstance {
         return _instance;
     }
 
-    public static RetrofitAPI GetAPI(){
-        return _instance.retrofitAPI;
+    public RetrofitAPI GetAPI(){
+        return retrofitAPI;
     }
 
 

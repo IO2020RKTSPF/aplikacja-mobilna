@@ -14,7 +14,7 @@ public class TransactionUpdater {
         if(transactionId != -1) {
             TransactionChange change = new TransactionChange();
             change.Status = status;
-            Call<Transaction> call = RetrofitInstance.GetAPI().changeTransaction("Bearer " + MainActivity.token, transactionId, change);
+            Call<Transaction> call = RetrofitInstance.GetInstance().GetAPI().changeTransaction("Bearer " + MainActivity.token, transactionId, change);
             call.enqueue(new Callback<Transaction>() {
                 @Override
                 public void onResponse(Call<Transaction> call, Response<Transaction> response) {

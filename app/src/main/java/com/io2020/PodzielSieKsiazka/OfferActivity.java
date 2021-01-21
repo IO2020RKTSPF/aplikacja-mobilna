@@ -87,7 +87,7 @@ public class OfferActivity extends AppCompatActivity {
         BookCategory category = (BookCategory) categorySpinner.getSelectedItem();
 
         Book book = new Book(title, author, isbn, description, "/test/test.jpg", category);
-        Call<Book> call = RetrofitInstance.GetAPI().addBook("Bearer " + MainActivity.token, book);
+        Call<Book> call = RetrofitInstance.GetInstance().GetAPI().addBook("Bearer " + MainActivity.token, book);
         call.enqueue(new Callback<Book>() {
             @Override
             public void onResponse(Call<Book> call, Response<Book> response) {
