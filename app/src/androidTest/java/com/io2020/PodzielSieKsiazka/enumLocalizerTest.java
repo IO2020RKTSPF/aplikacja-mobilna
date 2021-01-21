@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class enumLocalizerTest {
     Context context = ApplicationProvider.getApplicationContext();
     @Test
-    public void addition_isCorrect() {
+    public void localization_isCorrect() {
         assertEquals(context.getString(R.string.statusAccepted), EnumLocalizer.LocalizeTransactionStatus(TransactionStatus.Accepted, context));
         assertEquals(context.getString(R.string.statusDeclined), EnumLocalizer.LocalizeTransactionStatus(TransactionStatus.Declined, context));
         assertEquals(context.getString(R.string.statusPending), EnumLocalizer.LocalizeTransactionStatus(TransactionStatus.Pending, context));
