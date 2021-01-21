@@ -48,11 +48,8 @@ public class BookListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
         });
     }
 
-    public void getFilteredBookList(BookCategory category, String regex, Double longitude, Double latitude, Double radius){
-        String _category = null;
-        if(category != null)
-            _category = category.toString();
-        Call<List<Book>> call = RetrofitInstance.GetAPI().getAllBooksList(_category,
+    public void getFilteredBookList(String category, String regex, Double longitude, Double latitude, Double radius){
+        Call<List<Book>> call = RetrofitInstance.GetAPI().getAllBooksList(category,
                 regex, longitude, latitude, radius);
         call.enqueue(new Callback<List<Book>>() {
             @Override

@@ -55,6 +55,8 @@
     <string name="noticeRented">Książka została odebrana.</string>
     <string name="noticeFinished">Transakcja została zakończona.</string>
 
+    <string name="filter">Filtruj</string>
+
     <string-array name="CategoryList">
         <item>Wybierz kategorię...</item>
         <item>Kategoria1</item>

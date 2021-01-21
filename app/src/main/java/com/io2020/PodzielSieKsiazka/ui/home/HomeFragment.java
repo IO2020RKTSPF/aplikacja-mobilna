@@ -1,5 +1,6 @@
 package com.io2020.PodzielSieKsiazka.ui.home;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
@@ -18,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.io2020.PodzielSieKsiazka.FilteringActivity;
 import com.io2020.PodzielSieKsiazka.MainActivity;
 import com.io2020.PodzielSieKsiazka.OfferDescriptionActivity;
 import com.io2020.PodzielSieKsiazka.R;
@@ -26,13 +28,16 @@ import com.io2020.PodzielSieKsiazka.adapters.BookListRecyclerAdapter;
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitInstance;
 import com.io2020.PodzielSieKsiazka.schemas.BookCategory;
 
+import retrofit2.http.PATCH;
+
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private RecyclerView bookListRecyclerView;
     private BookListRecyclerAdapter bookListRecyclerAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private BookCategory savedCategoryFilter = null;
+    private String savedCategoryFilter = null;
+    EditText searchText;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -41,10 +46,16 @@ public class HomeFragment extends Fragment {
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        EditText searchText = root.findViewById(R.id.searchTextField);
+        searchText = root.findViewById(R.id.searchTextField);
         ImageButton searchButton = root.findViewById(R.id.searchButton);
         searchButton.setOnClickListener(l -> bookListRecyclerAdapter.getFilteredBookList(savedCategoryFilter,
                 searchText.getText().toString(), null, null, null));
+
+        ImageButton filterButton = root.findViewById(R.id.filterButton);
+        filterButton.setOnClickListener(l -> {
+            Intent intent = new Intent(getActivity(), FilteringActivity.class);
+            startActivityForResult(intent, 1);
+        });
 
         bookListRecyclerView = root.findViewById(R.id.bookListRecyclerView);
         layoutManager = new GridLayoutManager(getContext(), 1);
@@ -75,8 +86,19 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1 && resultCode == Activity.RESULT_OK){
+            savedCategoryFilter = data.getStringExtra("category");
+            bookListRecyclerAdapter.getFilteredBookList(savedCategoryFilter,
+                    searchText.getText().toString(), null, null, null);
+        }
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
-        bookListRecyclerAdapter.fillBookList();
+        bookListRecyclerAdapter.getFilteredBookList(savedCategoryFilter,
+                searchText.getText().toString(), null, null, null);
     }
 }
