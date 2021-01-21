@@ -6,6 +6,8 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +24,7 @@ import com.io2020.PodzielSieKsiazka.R;
 import com.io2020.PodzielSieKsiazka.RecyclerItemClickListener;
 import com.io2020.PodzielSieKsiazka.adapters.BookListRecyclerAdapter;
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitInstance;
+import com.io2020.PodzielSieKsiazka.schemas.BookCategory;
 
 public class HomeFragment extends Fragment {
 
@@ -29,6 +32,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView bookListRecyclerView;
     private BookListRecyclerAdapter bookListRecyclerAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private BookCategory savedCategoryFilter = null;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -36,6 +40,11 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        EditText searchText = root.findViewById(R.id.searchTextField);
+        ImageButton searchButton = root.findViewById(R.id.searchButton);
+        searchButton.setOnClickListener(l -> bookListRecyclerAdapter.getFilteredBookList(savedCategoryFilter,
+                searchText.getText().toString(), null, null, null));
 
         bookListRecyclerView = root.findViewById(R.id.bookListRecyclerView);
         layoutManager = new GridLayoutManager(getContext(), 1);
