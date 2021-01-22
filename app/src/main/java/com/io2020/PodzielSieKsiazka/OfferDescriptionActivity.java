@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import retrofit2.Response;
 public class OfferDescriptionActivity extends AppCompatActivity {
 
     private int currentOfferId;
+    TextView numberOfDays;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class OfferDescriptionActivity extends AppCompatActivity {
         TextView owner = findViewById(R.id.bookOwner);
         TextView description = findViewById(R.id.bookDescription);
         TextView category = findViewById(R.id.bookCategory);
+        numberOfDays = findViewById(R.id.editTextNumber);
 
         currentOfferId = intent.getIntExtra("id", -1);
 
@@ -45,6 +48,8 @@ public class OfferDescriptionActivity extends AppCompatActivity {
         if(MainActivity.userID == intent.getIntExtra("ownerId", -1)){
             button.setVisibility(View.GONE);
         }
+
+        description.setMovementMethod(new ScrollingMovementMethod());
 
         title.setText(intent.getStringExtra("title"));
         author.setText(intent.getStringExtra("author"));
@@ -66,25 +71,36 @@ public class OfferDescriptionActivity extends AppCompatActivity {
     }
 
     public void sendRequest(View view){
-        if(currentOfferId != -1) {
-            TransactionSend transactionSend = new TransactionSend();
-            transactionSend.setBookId(currentOfferId);
-            transactionSend.setDaysOfRentalTime(5);
-            Call<Transaction> call = RetrofitInstance.GetAPI().sendTransactionOffer("Bearer " + MainActivity.token, transactionSend);
-            call.enqueue(new Callback<Transaction>() {
-                @Override
-                public void onResponse(Call<Transaction> call, Response<Transaction> response) {
-                    if(response.isSuccessful()){
-                        Button button = findViewById(R.id.buttonSendOffer);
-                        button.setText(R.string.requestSent);
+        if(numberOfDays.getText().toString().equals("")){
+            numberOfDays.setText("");
+            numberOfDays.requestFocus();
+            return;
+        }
+        int days = Integer.parseInt(numberOfDays.getText().toString());
+        if(days < 100) {
+            if (currentOfferId != -1) {
+                TransactionSend transactionSend = new TransactionSend();
+                transactionSend.setBookId(currentOfferId);
+                transactionSend.setDaysOfRentalTime(days);
+                Call<Transaction> call = RetrofitInstance.GetAPI().sendTransactionOffer("Bearer " + MainActivity.token, transactionSend);
+                call.enqueue(new Callback<Transaction>() {
+                    @Override
+                    public void onResponse(Call<Transaction> call, Response<Transaction> response) {
+                        if (response.isSuccessful()) {
+                            Button button = findViewById(R.id.buttonSendOffer);
+                            button.setText(R.string.requestSent);
+                        }
                     }
-                }
 
-                @Override
-                public void onFailure(Call<Transaction> call, Throwable t) {
+                    @Override
+                    public void onFailure(Call<Transaction> call, Throwable t) {
 
-                }
-            });
+                    }
+                });
+            }
+        } else {
+            numberOfDays.setText("");
+            numberOfDays.requestFocus();
         }
     }
 }
