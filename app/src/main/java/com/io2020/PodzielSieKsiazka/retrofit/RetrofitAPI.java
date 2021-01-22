@@ -45,6 +45,9 @@ public interface RetrofitAPI {
     @POST("books")
     Call<Book> addBook(@Header("Authorization") String authorization, @Body() Book book);
 
+    @PATCH("books/{id}")
+    Call<Book> editBook(@Header("Authorization") String authorization, @Path("id") int id, @Body() Book book);
+
 
     @GET("transactions/{id}")
     Call<Transaction> getTransaction(@Header("Authorization") String authorization, int id);

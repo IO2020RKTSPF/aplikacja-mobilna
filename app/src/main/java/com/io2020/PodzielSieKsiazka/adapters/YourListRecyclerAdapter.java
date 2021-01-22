@@ -36,6 +36,10 @@ public class YourListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
 
     }
 
+    public List<Book> getBookList(){
+        return bookList;
+    }
+
     public void fillBookList(){
 
         Call<User> call = RetrofitInstance.GetAPI().getUserById(MainActivity.userID);
