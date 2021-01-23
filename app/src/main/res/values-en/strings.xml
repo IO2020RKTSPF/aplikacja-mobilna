@@ -43,7 +43,7 @@
     <string name="transactionDecline">Decline</string>
     <string name="transactionEnd">Finish</string>
     <string name="transactionRent">Rent</string>
-    
+
     <string name="noticeOK">OK</string>
     <string name="noticePending">Request awaits acceptance.</string>
     <string name="noticeAccepted">Request has been accepted. Status will change to "Rented", when the owner taps the Rent button.</string>
