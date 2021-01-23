@@ -14,6 +14,7 @@ import com.io2020.PodzielSieKsiazka.R;
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitAPI;
 import com.io2020.PodzielSieKsiazka.retrofit.RetrofitInstance;
 import com.io2020.PodzielSieKsiazka.schemas.Book;
+import com.io2020.PodzielSieKsiazka.schemas.BookCategory;
 import com.io2020.PodzielSieKsiazka.schemas.User;
 
 import java.util.List;
@@ -31,7 +32,25 @@ public class BookListRecyclerAdapter extends androidx.recyclerview.widget.Recycl
     }
 
     public void fillBookList(){
-        Call<List<Book>> call = RetrofitInstance.GetAPI().getAllBooksList();
+        Call<List<Book>> call = RetrofitInstance.GetAPI().getAllBooksList(null, null, null, null, null);
+        call.enqueue(new Callback<List<Book>>() {
+            @Override
+            public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
+                bookList = response.body();
+                bookList.removeIf(book -> !book.isAvailable());
+                notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<Book>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void getFilteredBookList(String category, String regex, Double longitude, Double latitude, Double radius){
+        Call<List<Book>> call = RetrofitInstance.GetAPI().getAllBooksList(category,
+                regex, longitude, latitude, radius);
         call.enqueue(new Callback<List<Book>>() {
             @Override
             public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {

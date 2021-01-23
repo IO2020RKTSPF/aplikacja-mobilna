@@ -1,5 +1,7 @@
 package com.io2020.PodzielSieKsiazka.retrofit;
 
+import androidx.annotation.Nullable;
+
 import com.io2020.PodzielSieKsiazka.schemas.Book;
 import com.io2020.PodzielSieKsiazka.schemas.GoogleUserBody;
 import com.io2020.PodzielSieKsiazka.schemas.LoginResponse;
@@ -17,6 +19,7 @@ import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface RetrofitAPI {
     static final String BASE_URL = "http://podzielsieksiazka.northeurope.cloudapp.azure.com:8080/api/";
@@ -30,13 +33,20 @@ public interface RetrofitAPI {
 
 
     @GET("books")
-    Call<List<Book>> getAllBooksList();
+    Call<List<Book>> getAllBooksList(@Nullable @Query("categoriesOfBooks") String category,
+                                     @Nullable @Query("regexString") String regex,
+                                     @Nullable @Query("longitude") Double longitude,
+                                     @Nullable @Query("latitude") Double latitude,
+                                     @Nullable @Query("radius") Double radius);
 
     @GET("books/{id}")
     Call<Book> getBookById(@Path("id") int id);
 
     @POST("books")
     Call<Book> addBook(@Header("Authorization") String authorization, @Body() Book book);
+
+    @PATCH("books/{id}")
+    Call<Book> editBook(@Header("Authorization") String authorization, @Path("id") int id, @Body() Book book);
 
 
     @GET("transactions/{id}")
