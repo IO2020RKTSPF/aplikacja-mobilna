@@ -27,6 +27,8 @@
     <string name="sendRequest">Zapytaj o wypożyczenie</string>
     <string name="requestSent">Wysłano zapytanie</string>
     <string name="owner">Właściciel</string>
+    <string name="rentDuration">Czas wypożyczenia (dni)</string>
+    <string name="rentHint">Maks. 100 dni</string>
 
     <string name="statusPending">Oczekująca</string>
     <string name="statusAccepted">Zaakceptowana</string>
